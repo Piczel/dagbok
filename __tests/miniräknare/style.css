@@ -1,0 +1,31 @@
+td {
+    width: 1em;
+    padding: 0.4em;
+    border: 1px solid rgb(146, 146, 146);
+    margin: 0.2em;
+    text-align: center;
+    font-size: 1.4em;
+    cursor: pointer;
+}
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+input {
+    font-size: 1.6em;
+    display: block;
+    margin-left: 2px;
+    width: 496px;
+    padding: 0.2em;
+    text-align: right;
+}
+
+* {
+    box-sizing: border-box;
+}
+.hidden {
+    display: none;
+}
+
+button {
+    margin: 1em;
+}
