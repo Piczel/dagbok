@@ -1,0 +1,15 @@
+body {
+    margin: 0;
+}
+* {
+    box-sizing: border-box;
+}
+
+
+.register, .sign-in  {
+
+    input[type=text],
+    input[type=password] {
+        display: block;
+    }
+}

@@ -1,3 +1,7 @@
+<?php
+    session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,6 +14,21 @@
 
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/ajax.js"></script>
+
+    <script>
+        // Lagrar klientdata som behövs när askynkrona anrop till server utförs 
+        let client = {
+            "accountID" : <?php 
+                if(isset($_SESSION["signedInAccountID"])) {
+                    echo $_SESSION["signedInAccountID"];
+                } else {
+                    echo 0;
+                }
+            ?>
+
+        };
+    </script>
+
 </head>
 <body>
 
@@ -22,6 +41,17 @@
         <input type="text" name="forename">
         <input type="text" name="surname">
         <button>Registrera</button>
+    </form>
+
+    <br><br>
+
+    <form class="sign-in">
+        <input type="text" name="email" autofill="email">
+        <input type="password" name="password">
+        <input type="password" name="repassword">
+        <input type="text" name="forename">
+        <input type="text" name="surname">
+        <button>Logga in</button>
     </form>
 </body>
 </html>
