@@ -1,0 +1,28 @@
+// Success
+{
+    "status" : true,
+    "message" : "projekt borttaget",
+    "projects" : [
+        {   
+            "projectid" : 4,
+            "name" : "Mitt nya projekt"
+        },
+        {   
+            "projectid" : 7,
+            "name" : "Mitt andra projekt"
+        }
+        // ...
+    ]
+}
+
+// Failure
+{
+    "status" : false,
+    "message" : "kunde inte hämta projekt"
+}
+
+{
+    "status" : false,
+    "message" : "inte inloggad"
+}
+

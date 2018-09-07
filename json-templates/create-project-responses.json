@@ -1,0 +1,20 @@
+// Success
+{
+    "status" : true,
+    "message" : "projekt skapades",
+    "project" : {
+        "projectid" : 4,
+        "projectname" : "Mitt nya projekt"
+    }
+}
+
+// Failure
+{
+    "status" : false,
+    "message" : "kunde inte skapa projekt"
+}
+
+{
+    "status" : false,
+    "message" : "inte inloggad"
+}

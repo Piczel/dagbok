@@ -1,0 +1,42 @@
+// Success
+{
+    "status" : true,
+    "message" : "projekt hämtat",
+    "project" : {
+        "projectid" : 2,
+        "projectname" : "Mitt nya projekt",
+        "notes" : [
+            {
+                "noteid" : 3,
+                "creationdate" : "2018-09-07 14:35",
+                "title" : "Detta gjorde jag",
+                "creatorname" : "Samuel Eckerrot",
+                "worktime" : 60,
+
+                "notetext" : "Detta är en mycket längre förklaring av vad jag gjorde",
+                "irregtext" : "Inget särskilt att notera"
+            },
+            {
+                "noteid" : 8,
+                "creationdate" : "2018-09-11 16:25",
+                "title" : "Detta gjorde jag",
+                "creatorname" : "Oskar Nylin",
+                "worktime" : 45,
+
+                "notetext" : "Detta är en mycket längre förklaring av vad jag gjorde",
+                "irregtext" : "Inget särskilt att notera"
+            } // ...
+        ]
+    }
+}
+
+// Failure
+{
+    "status" : false,
+    "message" : "du har inte behörighet att komma åt detta projekt"
+}
+
+{
+    "status" : false,
+    "message" : "inte inloggad"
+}

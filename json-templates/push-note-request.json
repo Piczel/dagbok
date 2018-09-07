@@ -1,0 +1,11 @@
+{
+    "accountid" : 2,
+    "projectid" : 4,
+    
+    "creationdate" : "2018-06-29 14:29",
+    "title" : "Detta gjorde jag",
+    "worktime" : 60,
+
+    "notetext" : "Detta är en mycket längre förklaring av vad jag gjorde",
+    "irregtext" : "Inget särskilt att notera"
+}
