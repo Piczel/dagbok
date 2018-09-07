@@ -1,0 +1,11 @@
+// Success
+{
+    "status" : true,
+    "message" : "kontot registrerades"
+}
+
+// Failure
+{
+    "status" : false,
+    "message" : "kontot registrerades inte"
+}

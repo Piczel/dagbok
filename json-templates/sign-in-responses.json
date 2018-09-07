@@ -1,0 +1,15 @@
+// Success
+{
+    "status" : true,
+    "message" : "inloggning lyckades",
+    "account" : {
+        "accountid" : 2,
+        "accountemail" : "oskar.nylin99@gmail.com"
+    }
+}
+
+// Failure
+{
+    "status" : false,
+    "message" : "inloggning misslyckades"
+}
