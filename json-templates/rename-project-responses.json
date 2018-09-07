@@ -1,0 +1,21 @@
+// Success
+{
+    "status" : true,
+    "message" : "namn ändrat"
+}
+
+// Failure
+{
+    "status" : false,
+    "message" : "kunde inte ändra namn på projekt"
+}
+
+{
+    "status" : false,
+    "message" : "du kan inte ändra namn på detta projekt"
+}
+
+{
+    "status" : false,
+    "message" : "inte inloggad"
+}

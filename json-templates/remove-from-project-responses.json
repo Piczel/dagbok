@@ -1,0 +1,21 @@
+// Success
+{
+    "status" : true,
+    "message" : "kontot togs bort"
+}
+
+// Failure
+{
+    "status" : false,
+    "message" : "kunde inte ta bort konto från projekt"
+}
+
+{
+    "status" : false,
+    "message" : "du kan inte ta bort konton från detta projekt"
+}
+
+{
+    "status" : false,
+    "message" : "inte inloggad"
+}
