@@ -1,0 +1,15 @@
+body {
+  margin: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.register input[type=text],
+.register input[type=password], .sign-in input[type=text],
+.sign-in input[type=password] {
+  display: block;
+}
+
+/*# sourceMappingURL=index.css.map */
