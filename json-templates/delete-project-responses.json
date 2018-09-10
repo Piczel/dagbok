@@ -15,3 +15,7 @@
     "message" : "inte inloggad"
 }
 
+{
+    "status" : false,
+    "message" : "du har inte behörighet att ta bort"
+}
