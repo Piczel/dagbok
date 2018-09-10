@@ -8,7 +8,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Home</title>
+    <title>Account</title>
     
     <link rel="stylesheet" href="css/index.css">
 
@@ -32,26 +32,19 @@
 </head>
 <body>
 
-    
-
-    <form class="register">
-        <input type="text" name="email" autofill="email">
-        <input type="password" name="password">
-        <input type="password" name="repassword">
-        <input type="text" name="forename">
-        <input type="text" name="surname">
-        <button class="submit">Registrera</button>
+    <form class="new-project">
+        <input type="text" name="projectname">
+        <button class="submit">Skapa</button>
     </form>
 
-    <br><br>
-
-    <form class="sign-in">
-        <input type="text" name="email" autofill="email">
-        <input type="password" name="password">
-        <input type="password" name="repassword">
-        <button class="submit">Logga in</button>
+    <form class="rename-project">
+        <input type="text" name="projectname">
+        <button class="submit" projectid="1">Ok</button>
     </form>
-    
+
+
+    <div class="delete-project" projectid="1"></div>
+
     <script src="js/index.js"></script>
 </body>
 </html>
