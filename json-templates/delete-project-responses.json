@@ -1,0 +1,17 @@
+// Success
+{
+    "status" : true,
+    "message" : "projekt borttaget"
+}
+
+// Failure
+{
+    "status" : false,
+    "message" : "kunde inte ta bort projekt"
+}
+
+{
+    "status" : false,
+    "message" : "inte inloggad"
+}
+

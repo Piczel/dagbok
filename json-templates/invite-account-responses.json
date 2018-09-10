@@ -1,0 +1,21 @@
+// Success
+{
+    "status" : true,
+    "message" : "kontot bjöds in"
+}
+
+// Failure
+{
+    "status" : false,
+    "message" : "kunde inte bjuda in konto"
+}
+
+{
+    "status" : false,
+    "message" : "du får inte bjuda in konto till detta projekt"
+}
+
+{
+    "status" : false,
+    "message" : "inte inloggad"
+}
