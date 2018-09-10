@@ -6,7 +6,10 @@
 */
 
 // Requests server to register an account
-async function a_register() {
+async function a_register(
+    resolved = function(){},
+    rejected = function(){}
+) {
     
     let email = $("form.register input[name=email]").val();
     let password = $("form.register input[name=password]").val();
@@ -40,18 +43,21 @@ async function a_register() {
         "surname" : surname
     });
 
-    // Register successful?
-    if(response.status) {
-
+    // Request successful?
+    if(response.status) {  
+        resolved(response);
     } else {
-
+        rejected(response);
     }
 }
 
 
 
 // Attempts to sign in account
-async function a_signIn() {
+async function a_signIn(
+    resolved = function(){},
+    rejected = function(){}
+) {
     
     let email = $("form.sign-in input[name=email]").val();
     let password = $("form.sign-in input[name=password]").val();
@@ -71,12 +77,35 @@ async function a_signIn() {
         "password" : password
     });
 
-    // Sign in successful?
-    if(response.status) {
-        client.accountID = response.account.accountid
-
-        
+    // Request successful?
+    if(response.status) {  
+        resolved(response);
     } else {
-
+        rejected(response);
     }
 }
+
+
+
+
+
+
+
+// Bind action listeners
+
+$("form.register button.submit").on("click", function() {
+    a_register(function(response) {
+
+    }, function(response) {
+
+    });
+});
+
+$("form.sign-in button.submit").on("click", function() {
+    a_signIn(function(response) {
+
+    }, function(response) {
+
+    });
+});
+
