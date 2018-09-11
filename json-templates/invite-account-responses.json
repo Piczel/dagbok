@@ -12,7 +12,17 @@
 
 {
     "status" : false,
-    "message" : "du får inte bjuda in konto till detta projekt"
+    "message" : "inte ditt projekt"
+}
+
+{
+    "status" : false,
+    "message" : "personen är redan delaktig"
+}
+
+{
+    "status" : false,
+    "message" : "kunde inte hitta e-postadressen"
 }
 
 {
