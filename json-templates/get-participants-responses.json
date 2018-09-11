@@ -1,0 +1,31 @@
+// Success
+{
+    "status" : true,
+    "message" : "deltagare hämtat",
+    "participants" : [
+        {
+            "accountid" : 1,
+            "email" : "eckerrot.samuel@gmail.com",
+            "forename" : "Samuel",
+            "eckerrot" : "Eckerrot"
+        },
+        {
+            "accountid" : 1,
+            "email" : "eckerrot.samuel@gmail.com",
+            "forename" : "Samuel",
+            "eckerrot" : "Eckerrot"
+        }
+        // ...
+    ]
+}
+
+// Failure
+{
+    "status" : false,
+    "message" : "du har inte tillgång till detta projekt"
+}
+
+{
+    "status" : false,
+    "message" : "inte inloggad"
+}
