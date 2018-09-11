@@ -95,17 +95,35 @@ async function a_signIn(
 
 $(".form.register button.submit").on("click", function() {
     a_register(function(response) {
-
+        console.log(response);
     }, function(response) {
-
+        console.log(response);
     });
 });
 
 $(".form.sign-in button.submit").on("click", function() {
     a_signIn(function(response) {
-
+        console.log(response);
     }, function(response) {
-
+        console.log(response);
     });
 });
 
+
+
+/*
+let $pageContainer = $(".page-container");
+
+$("body").on("mousemove", function(event) {
+    console.log(event);
+    $pageContainer.css({"perspective-origin" : event.clientX+"px "+event.clientY+"px"})
+});
+*/
+
+// Adds functionality of tabs
+$(".tabs .tab").on("click", function() {
+    $(".tab.active").removeClass("active");
+    $(this).addClass("active");
+    $(".tab-content").removeClass("shown");
+    $("."+$(this).attr("target")).addClass("shown");
+});
