@@ -40,3 +40,8 @@
     "status" : false,
     "message" : "inte inloggad"
 }
+
+{
+    "status" : false,
+    "message" : "projektet finns inte"
+}
