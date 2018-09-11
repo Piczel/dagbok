@@ -1,13 +1,13 @@
 // Success
 {
     "status" : true,
-    "message" : "anteckning togs bort"
+    "message" : "anteckning borttagen"
 }
 
 // Failure
 {
     "status" : false,
-    "message" : "du har inte behörighet att komma åt detta projekt"
+    "message" : "kunde inte ta bort anteckning"
 }
 
 {
