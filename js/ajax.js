@@ -14,8 +14,10 @@ function ajax(
                 console.log(response);
                 resolve(JSON.parse(response));
             } else if(this.readyState == 4 && this.status != 200) {
-
-                reject(new Error("Error occured with request"));
+                resolve({
+                    "status" : false,
+                    "message" : "Error with request"
+                });
             }
         };
         xhr.open("POST", to, true);

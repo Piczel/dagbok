@@ -1,5 +1,14 @@
 <?php
     session_start();
+
+    // Check page request
+    if(!isset($_GET["pid"])) {
+        header("location:index.php");
+        exit;
+    }
+
+
+    $projectid = $_GET["pid"];
 ?>
 
 <!DOCTYPE html>
@@ -24,27 +33,35 @@
                 } else {
                     echo 0;
                 }
-            ?>
-
+            ?>,
+            "projectID" : <?php echo $_GET["pid"]; ?>
         };
     </script>
 
 </head>
 <body>
 
-    <div class="form new-project">
-        <input type="text" name="projectname">
-        <button class="submit">Skapa</button>
+    <div class="form push-note">
+        <input type="text" name="date">
+        <input type="text" name="title">
+        <input type="text" name="work-time">
+        <textarea name="note-text"></textarea>
+        <textarea name="irreg-text"></textarea>
+        <button class="submit">Skicka</button>
     </div>
 
-    <div class="form rename-project">
-        <input type="text" name="projectname">
-        <button class="submit" projectid="1">Ok</button>
+    <br>
+    
+
+    <div class="invite-account">
+        <input type="text" name="email">
+        <button class="submit">Bjud in</button>
     </div>
 
 
-    <div class="delete-project" projectid="1"></div>
+    <div class="delete-note" noteid="1"></div>
+    <div class="remove-from-project" accountid="1"></div>
 
-    <script src="js/account.js"></script>
+    <script src="js/project.js"></script>
 </body>
 </html>
