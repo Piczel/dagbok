@@ -17,7 +17,7 @@ async function a_createProject(
         return;
     }
     
-    let name = $("form.new-project input[name=projectname]").val();
+    let name = $(".form.new-project input[name=projectname]").val();
 
     // Validates input
     if(name.length < 1) {
@@ -76,7 +76,7 @@ async function a_renameProject(
         return;
     }
 
-    let name = $("form.rename-project input[name=projectname]").val();
+    let name = $(".form.rename-project input[name=projectname]").val();
 
     // Validates input
     if(name.length < 1) {
@@ -128,7 +128,7 @@ async function a_getAllProjects(
 
 // Bind action listeners
 
-$("form.new-project button.submit").on("click", function() {
+$(".form.new-project button.submit").on("click", function() {
     a_createProject(function(response) {
 
     }, function(response) {
@@ -146,7 +146,7 @@ $(".delete-project").on("click", function() {
 });
 
 // Passes projectID stored in element attribute
-$("form.rename-project button.submit").on("click", function() {
+$(".form.rename-project button.submit").on("click", function() {
     a_createProject($(this).attr("projectid"), function(response) {
 
     }, function(response) {

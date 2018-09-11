@@ -34,23 +34,23 @@
 
     
 
-    <form class="register">
+    <div class="form register">
         <input type="text" name="email" autofill="email">
         <input type="password" name="password">
         <input type="password" name="repassword">
         <input type="text" name="forename">
         <input type="text" name="surname">
         <button class="submit">Registrera</button>
-    </form>
+    </div>
 
     <br><br>
 
-    <form class="sign-in">
+    <div class="form sign-in">
         <input type="text" name="email" autofill="email">
         <input type="password" name="password">
         <input type="password" name="repassword">
         <button class="submit">Logga in</button>
-    </form>
+    </div>
     
     <script src="js/index.js"></script>
 </body>
