@@ -22,31 +22,30 @@
     $connection = new mysqli($mysql["host"], $mysql["username"], $mysql["password"], $mysql["dbname"]);
 
     $accountid = $input["accountid"];
-    $projectid = $input["projectid"];
+    $noteid = $input["noteid"];
 
-    $sql = "SELECT foraccountid FROM participation WHERE foraccountid = $accountid AND forprojectid = $projectid";
+    // Is user included in the project
+    $sql = 
+    "SELECT 1
+    FROM note AS n
+        INNER JOIN participation AS p
+            ON n.forprojectid = p.forprojectid
+    WHERE n.noteid = $noteid AND p.foraccountid = $accountid";
 
+    // YES
     $result = $connection->query($sql);
-    if($result->num_rows == 1){
-        $sql = "INSERT INTO note (creationdate, title, worktime, notetext, irregtext, foraccountid, forprojectid)
-        VALUES (
-        '".$input["creationdate"]."',
-        '".$input["title"]."',
-        '".$input["worktime"]."',
-        '".$input["notetext"]."',
-        '".$input["irregtext"]."',
-        ".$input["accountid"].",
-        ".$input["projectid"]."
-        )";
+    if($result->num_rows == 1){     
+        $sql = "DELETE FROM note WHERE noteid = $noteid";
+
         if($connection->multi_query($sql) === true){
             $response = [
                 "status"=>true,
-                "message"=>"anteckning tillagd"
-            ];        
+                "message"=>"anteckning borttagen"
+            ];
         }else{
             $response = [
-                "status"=>false,
-                "message"=>"du har inte behörighet att komma åt detta projekt"
+                "status"=>true,
+                "message"=>"kunde inte ta bort anteckning"
             ];
         }
     }else{
