@@ -7,6 +7,8 @@ REM This script drives the standalone Sass package, which bundles together a
 REM Dart executable and a snapshot of Sass. It can be created with `pub run
 REM grinder package`.
 
+echo "WARNING: The dart-sass executable is deprecated, use sass instead."
+
 set SCRIPTPATH=%~dp0
 set arguments=%*
 "%SCRIPTPATH%\src\dart.exe" --no-preview-dart-2 "-Dversion=1.13.2" "%SCRIPTPATH%\src\sass.dart.snapshot" %arguments%

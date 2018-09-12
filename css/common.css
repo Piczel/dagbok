@@ -1,0 +1,177 @@
+body {
+  margin: 0;
+  background-color: #e6f1f7;
+  font-family: "Chivo", sans-serif;
+  color: #4e5f63;
+  min-height: 100vh;
+  background: #4e5f63;
+  /* Old browsers */
+  background: -moz-linear-gradient(bottom, #4e5f63 0%, #4e5f63 6%, #7298a1 19%, #a1bec5 35%, #cae0e9 71%, #e6f1f7 100%);
+  /* FF3.6-15 */
+  background: -webkit-linear-gradient(bottom, #4e5f63 0%, #4e5f63 6%, #7298a1 19%, #a1bec5 35%, #cae0e9 71%, #e6f1f7 100%);
+  /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to top, #4e5f63 0%, #4e5f63 6%, #7298a1 19%, #a1bec5 35%, #cae0e9 71%, #e6f1f7 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.notification {
+  background-color: #e6f1f7;
+  position: fixed;
+  right: 0.8em;
+  bottom: 0.8em;
+  border: 1px solid #a1bec5;
+  opacity: 0;
+  padding: 1.6em;
+  cursor: pointer;
+}
+.notification .text {
+  font-size: 1.2em;
+}
+.notification .close {
+  color: #7298a1;
+  text-align: right;
+  margin-top: 0.4rem;
+  font-size: 0.9em;
+}
+
+.form.register,
+.form.sign-in,
+.form.push-note {
+  border: 1px solid #a1bec5;
+  padding: 1.6rem;
+  background-color: #e6f1f7;
+}
+.form.register .group,
+.form.sign-in .group,
+.form.push-note .group {
+  padding: 0.8rem 0;
+  width: 100%;
+}
+.form.register .center,
+.form.sign-in .center,
+.form.push-note .center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.form.register .input-label,
+.form.sign-in .input-label,
+.form.push-note .input-label {
+  padding: 0 0.8rem;
+}
+.form.register input[type=text],
+.form.register input[type=email],
+.form.register input[type=password],
+.form.register button.submit,
+.form.sign-in input[type=text],
+.form.sign-in input[type=email],
+.form.sign-in input[type=password],
+.form.sign-in button.submit,
+.form.push-note input[type=text],
+.form.push-note input[type=email],
+.form.push-note input[type=password],
+.form.push-note button.submit {
+  display: block;
+  border: none;
+  border: 1px solid #cae0e9;
+  color: inherit;
+  font-size: 1.2rem;
+  height: 2em;
+  padding: 0.6rem 0.8rem;
+  background-color: #cae0e9;
+  margin-bottom: 0.4rem;
+  width: 100%;
+}
+.form.register input[type=text]:focus,
+.form.register input[type=email]:focus,
+.form.register input[type=password]:focus,
+.form.register button.submit:focus,
+.form.sign-in input[type=text]:focus,
+.form.sign-in input[type=email]:focus,
+.form.sign-in input[type=password]:focus,
+.form.sign-in button.submit:focus,
+.form.push-note input[type=text]:focus,
+.form.push-note input[type=email]:focus,
+.form.push-note input[type=password]:focus,
+.form.push-note button.submit:focus {
+  outline-color: #7298a1;
+  outline-offset: -2px;
+  outline-style: auto;
+  outline-width: 5px;
+}
+.form.register input[type=text]:hover,
+.form.register input[type=email]:hover,
+.form.register input[type=password]:hover,
+.form.register button.submit:hover,
+.form.sign-in input[type=text]:hover,
+.form.sign-in input[type=email]:hover,
+.form.sign-in input[type=password]:hover,
+.form.sign-in button.submit:hover,
+.form.push-note input[type=text]:hover,
+.form.push-note input[type=email]:hover,
+.form.push-note input[type=password]:hover,
+.form.push-note button.submit:hover {
+  border: 1px solid #a1bec5;
+}
+.form.register input[type=text]:-webkit-autofill, .form.register input[type=text]:-webkit-autofill:hover, .form.register input[type=text]:-webkit-autofill:focus,
+.form.register input[type=email]:-webkit-autofill,
+.form.register input[type=email]:-webkit-autofill:hover,
+.form.register input[type=email]:-webkit-autofill:focus,
+.form.register input[type=password]:-webkit-autofill,
+.form.register input[type=password]:-webkit-autofill:hover,
+.form.register input[type=password]:-webkit-autofill:focus,
+.form.register button.submit:-webkit-autofill,
+.form.register button.submit:-webkit-autofill:hover,
+.form.register button.submit:-webkit-autofill:focus,
+.form.sign-in input[type=text]:-webkit-autofill,
+.form.sign-in input[type=text]:-webkit-autofill:hover,
+.form.sign-in input[type=text]:-webkit-autofill:focus,
+.form.sign-in input[type=email]:-webkit-autofill,
+.form.sign-in input[type=email]:-webkit-autofill:hover,
+.form.sign-in input[type=email]:-webkit-autofill:focus,
+.form.sign-in input[type=password]:-webkit-autofill,
+.form.sign-in input[type=password]:-webkit-autofill:hover,
+.form.sign-in input[type=password]:-webkit-autofill:focus,
+.form.sign-in button.submit:-webkit-autofill,
+.form.sign-in button.submit:-webkit-autofill:hover,
+.form.sign-in button.submit:-webkit-autofill:focus,
+.form.push-note input[type=text]:-webkit-autofill,
+.form.push-note input[type=text]:-webkit-autofill:hover,
+.form.push-note input[type=text]:-webkit-autofill:focus,
+.form.push-note input[type=email]:-webkit-autofill,
+.form.push-note input[type=email]:-webkit-autofill:hover,
+.form.push-note input[type=email]:-webkit-autofill:focus,
+.form.push-note input[type=password]:-webkit-autofill,
+.form.push-note input[type=password]:-webkit-autofill:hover,
+.form.push-note input[type=password]:-webkit-autofill:focus,
+.form.push-note button.submit:-webkit-autofill,
+.form.push-note button.submit:-webkit-autofill:hover,
+.form.push-note button.submit:-webkit-autofill:focus {
+  color: inherit;
+  border: 1px solid #a1bec5;
+  -webkit-text-fill-color: inherit;
+  box-shadow: 0 0 0px 1000px #cae0e9 inset;
+  -webkit-box-shadow: 0 0 0px 1000px #cae0e9 inset;
+  transition: background-color 5000s ease-in-out 0s;
+}
+.form.register button.submit,
+.form.sign-in button.submit,
+.form.push-note button.submit {
+  border: 1px solid #a1bec5 !important;
+  width: unset !important;
+  cursor: pointer !important;
+}
+.form.register button.submit:hover,
+.form.sign-in button.submit:hover,
+.form.push-note button.submit:hover {
+  outline-color: #7298a1;
+  outline-offset: -2px;
+  outline-style: auto;
+  outline-width: 5px;
+}
+
+/*# sourceMappingURL=common.css.map */

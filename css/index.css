@@ -1,15 +1,61 @@
-body {
-  margin: 0;
+.page-wrapper {
+  height: 100vh;
 }
 
-* {
-  box-sizing: border-box;
+.page-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 7rem 0;
 }
 
-.register input[type=text],
-.register input[type=password], .sign-in input[type=text],
-.sign-in input[type=password] {
+.main {
+  margin-bottom: 4rem;
+  border-bottom: 0.1em solid #a1bec5;
+  font-family: "Unlock", cursive;
+  font-size: 5em;
+  font-weight: 900;
+}
+
+.register, .sign-in, .tabs {
+  width: 26em;
+  flex-shrink: 0;
+}
+
+.form.register,
+.form.sign-in {
+  display: none;
+}
+
+.form.register.shown,
+.form.sign-in.shown {
   display: block;
+}
+
+.tabs {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  min-height: 5em;
+  padding: 0 1.2em;
+}
+.tabs .tab {
+  transition: all 200ms cubic-bezier(0.19, 0.83, 0.32, 0.96);
+  border-right: 1px solid #a1bec5;
+  border-left: 1px solid #a1bec5;
+  border-top: 1px solid #a1bec5;
+  background-color: #cae0e9;
+  cursor: pointer;
+  padding: 0.6rem 0.8rem;
+  margin: 0 0.4rem;
+  font-weight: 900;
+}
+.tabs .tab.active {
+  background-color: #e6f1f7;
+  cursor: default;
+  padding: 1.2rem 1.6rem;
+  font-size: 1.2em;
 }
 
 /*# sourceMappingURL=index.css.map */

@@ -1,0 +1,124 @@
+$brightest: #e6f1f7;
+$brighter: #cae0e9;
+$bright: #a1bec5;
+$base: #7298a1;
+$dark: #4e5f63;
+
+$confirm: #48b170;
+$decline: #b15848;
+
+body {
+    margin: 0;
+    background-color: $brightest;
+    font-family: 'Chivo', sans-serif;
+    color: $dark;
+    min-height: 100vh;
+
+    background: #4e5f63; /* Old browsers */
+    background: -moz-linear-gradient(bottom, #4e5f63 0%, #4e5f63 6%, #7298a1 19%, #a1bec5 35%, #cae0e9 71%, #e6f1f7 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(bottom, #4e5f63 0%,#4e5f63 6%,#7298a1 19%,#a1bec5 35%,#cae0e9 71%,#e6f1f7 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to top, #4e5f63 0%,#4e5f63 6%,#7298a1 19%,#a1bec5 35%,#cae0e9 71%,#e6f1f7 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+}
+* {
+    box-sizing: border-box;
+}
+
+
+.notification {
+    background-color: $brightest;
+    position: fixed;
+    right: 0.8em;
+    bottom: 0.8em;
+    border: 1px solid $bright;
+    opacity: 0;
+    padding: 1.6em;
+    cursor: pointer;
+
+    .text {
+        font-size: 1.2em;
+    }
+    .close {
+        color: $base;
+        text-align: right;
+        margin-top: 0.4rem;
+        font-size: 0.9em;
+    }
+}
+
+
+.form.register,
+.form.sign-in,
+.form.push-note  {
+
+    border: 1px solid $bright;
+    padding: 1.6rem;
+    background-color: $brightest;
+    //box-shadow: 0px 0px 2em -0.25em $brightest;
+
+    .group {
+        padding: 0.8rem 0;
+        width: 100%;
+    }
+    .center {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .input-label {
+        padding: 0 0.8rem;
+    }
+    
+    input[type=text],
+    input[type=email],
+    input[type=password],
+    button.submit {
+        display: block;
+        border: none;
+        border: 1px solid $brighter;
+        color: inherit;
+        font-size: 1.2rem;
+        height: 2em;
+        padding: 0.6rem 0.8rem;
+        background-color: $brighter;
+        margin-bottom: 0.4rem;
+        width: 100%;
+
+        &:focus {
+            outline: {
+                color: $base;
+                offset: -2px;
+                style: auto;
+                width: 5px;
+            }
+        }
+        &:hover {
+            border: 1px solid $bright;
+        }
+        
+        &:-webkit-autofill,
+        &:-webkit-autofill:hover, 
+        &:-webkit-autofill:focus {
+            color: inherit;
+            border: 1px solid $bright;
+            -webkit-text-fill-color: inherit;
+            box-shadow: 0 0 0px 1000px $brighter inset;
+            -webkit-box-shadow: 0 0 0px 1000px $brighter inset;
+            transition: background-color 5000s ease-in-out 0s;
+        }
+    }
+    button.submit {
+        border: 1px solid $bright !important;
+        width: unset !important;
+        cursor: pointer !important;
+
+        &:hover {
+            outline: {
+                color: $base;
+                offset: -2px;
+                style: auto;
+                width: 5px;
+            }
+        }
+    }
+}

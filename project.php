@@ -34,7 +34,7 @@
                     echo 0;
                 }
             ?>,
-            "projectID" : <?php echo $_GET["pid"]; ?>
+            "projectID" : <?php echo $projectid; ?>
         };
     </script>
 

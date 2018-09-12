@@ -95,17 +95,28 @@ async function a_signIn(
 
 $(".form.register button.submit").on("click", function() {
     a_register(function(response) {
-
+        notifications.display(response.message);
+        $(".tab[target=sign-in]").trigger("click");
     }, function(response) {
-
+        notifications.display(response.message);
     });
 });
 
 $(".form.sign-in button.submit").on("click", function() {
-    a_signIn(function(response) {
-
+    a_signIn(function(response) {        
+        location.href = "account.php";
     }, function(response) {
-
+        notifications.display(response.message);
     });
 });
 
+
+
+// Adds functionality of tabs
+$(".tabs .tab").on("click", function() {
+    $(".tab.active").removeClass("active");
+    $(this).addClass("active");
+
+    $(".tab-content").removeClass("shown");
+    $("."+$(this).attr("target")).addClass("shown");
+});
