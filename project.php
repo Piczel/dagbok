@@ -23,6 +23,7 @@
 
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/ajax.js"></script>
+    <script src="js/notifications.js"></script>
 
     <script>
         // Lagrar klientdata som behövs när askynkrona anrop till server utförs 
@@ -41,6 +42,9 @@
 </head>
 <body>
 
+
+
+<!--
     <div class="form push-note">
         <input type="text" name="date">
         <input type="text" name="title">
@@ -62,6 +66,19 @@
     <div class="delete-note" noteid="1"></div>
     <div class="remove-from-project" accountid="1"></div>
 
+    <div class="form new-project">
+        <input type="text" name="projectname">
+        <button class="submit">Skapa</button>
+    </div>
+
+    <div class="form rename-project">
+        <input type="text" name="projectname">
+        <button class="submit" projectid="1">Ok</button>
+    </div>
+
+
+    <div class="delete-project" projectid="1"></div>
+    -->
     <script src="js/project.js"></script>
 </body>
 </html>
