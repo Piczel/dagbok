@@ -21,13 +21,13 @@
         $sql = "SELECT foraccountid FROM participation WHERE foraccountid = $accountid AND forprojectid = $projectid";
         $result = $connection->query($sql);
         if($result->num_rows != 1){
-            throw new Exception("inte ditt projekt");
+            throw new Exception("Inte ditt projekt");
         }
         //Fetches project
         $sql = "SELECT `name` AS projectname FROM project WHERE projectid = $projectid";
         $result = $connection->query($sql);
         if($result->num_rows != 1){
-            throw new Exception("projektet finns inte");
+            throw new Exception("Projektet finns inte");
         }
         
         $project = [
@@ -36,8 +36,8 @@
             "notes" => []
         ];
         //Fetches notes
-        $sql = "SELECT noteid, creationdate, title, worktime, notetext, irregtext, foraccountid
-        FROM note WHERE forprojectid = $projectid"; 
+        $sql = "SELECT noteid, creationdate, title, worktime, notetext, irregtext, foraccountid, forename, surname
+        FROM note INNER JOIN account ON foraccountid = accountid WHERE forprojectid = $projectid ORDER BY creationdate DESC"; 
         $result = $connection->query($sql);
         while($row = $result->fetch_assoc()){
             $project["notes"][] = $row;

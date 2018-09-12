@@ -14,13 +14,13 @@
     //Query succeeded
         $response = [
             "status"=>true,
-            "message"=>"kontot registrerades"
+            "message"=>"Konto registrerat"
         ];
     }else{
     //Query failed    
         $response = [
             "status"=>false,
-            "message"=>"kontot registrerades inte"
+            "message"=>"Kunde inte registrera konto"
         ];
 
     }

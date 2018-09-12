@@ -41,18 +41,18 @@
         if($connection->multi_query($sql) === true){
             $response = [
                 "status"=>true,
-                "message"=>"anteckning tillagd"
+                "message"=>"Anteckning tillagd"
             ];        
         }else{
             $response = [
                 "status"=>false,
-                "message"=>"du har inte behörighet att komma åt detta projekt"
+                "message"=>"Du är inte behörig"
             ];
         }
     }else{
         $response = [
             "status"=>false,
-            "message"=>"inte ditt projekt"
+            "message"=>"Inte ditt projekt"
         ];
     }
     echo json_encode($response);

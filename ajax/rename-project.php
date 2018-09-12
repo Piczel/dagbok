@@ -22,18 +22,18 @@
         $sql = "SELECT foraccountid FROM participation WHERE foraccountid = $accountid AND forprojectid = $projectid";
         $result = $connection->query($sql);
         if($result->num_rows != 1){
-            throw new Exception("inte ditt projekt");
+            throw new Exception("Inte ditt projekt");
         }
         //Updates project name        
         $sql = "UPDATE project SET `name`= '$projectname' WHERE projectid = $projectid";       
         if($connection->multi_query($sql) === true){
             $response = [
                 "status"=>true,
-                "message"=>"namn bytt",
+                "message"=>"Projektnamn ändrat",
                 "project"=>["projectname"=>$projectname]
             ];    
         }else{
-            throw new Exception("kunde inte byta namn");
+            throw new Exception("Kunde inte ändra projektnamn");
         }
     
     }catch(Exception $exc){
