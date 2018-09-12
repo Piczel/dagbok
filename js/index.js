@@ -95,35 +95,28 @@ async function a_signIn(
 
 $(".form.register button.submit").on("click", function() {
     a_register(function(response) {
-        console.log(response);
+        notifications.display(response.message);
+        $(".tab[target=sign-in]").trigger("click");
     }, function(response) {
-        console.log(response);
+        notifications.display(response.message);
     });
 });
 
 $(".form.sign-in button.submit").on("click", function() {
-    a_signIn(function(response) {
-        console.log(response);
+    a_signIn(function(response) {        
+        location.href = "account.php";
     }, function(response) {
-        console.log(response);
+        notifications.display(response.message);
     });
 });
 
 
-
-/*
-let $pageContainer = $(".page-container");
-
-$("body").on("mousemove", function(event) {
-    console.log(event);
-    $pageContainer.css({"perspective-origin" : event.clientX+"px "+event.clientY+"px"})
-});
-*/
 
 // Adds functionality of tabs
 $(".tabs .tab").on("click", function() {
     $(".tab.active").removeClass("active");
     $(this).addClass("active");
+
     $(".tab-content").removeClass("shown");
     $("."+$(this).attr("target")).addClass("shown");
 });

@@ -19,11 +19,11 @@ $bezier: cubic-bezier(0.19, 0.83, 0.32, 0.96);
     justify-content: flex-start;
     align-items: center;
     
+    padding: 7rem 0;
 }
 
 .main {
-    margin-top: 10vh;
-    margin-bottom: 5vh;
+    margin-bottom: 4rem;
     border-bottom: 0.1em solid $bright;
 
     font: {

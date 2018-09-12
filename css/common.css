@@ -18,6 +18,26 @@ body {
   box-sizing: border-box;
 }
 
+.notification {
+  background-color: #e6f1f7;
+  position: fixed;
+  right: 0.8em;
+  bottom: 0.8em;
+  border: 1px solid #a1bec5;
+  opacity: 0;
+  padding: 1.6em;
+  cursor: pointer;
+}
+.notification .text {
+  font-size: 1.2em;
+}
+.notification .close {
+  color: #7298a1;
+  text-align: right;
+  margin-top: 0.4rem;
+  font-size: 0.9em;
+}
+
 .form.register,
 .form.sign-in,
 .form.push-note {

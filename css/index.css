@@ -7,11 +7,11 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  padding: 7rem 0;
 }
 
 .main {
-  margin-top: 10vh;
-  margin-bottom: 5vh;
+  margin-bottom: 4rem;
   border-bottom: 0.1em solid #a1bec5;
   font-family: "Unlock", cursive;
   font-size: 5em;
