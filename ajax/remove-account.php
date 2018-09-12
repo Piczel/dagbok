@@ -22,7 +22,7 @@
         $sql = "SELECT foraccountid FROM participation WHERE foraccountid = $accountid AND forprojectid = $projectid";
         $result = $connection->query($sql);
         if($result->num_rows != 1){
-            throw new Exception("inte ditt projekt");
+            throw new Exception("Inte ditt projekt");
         }
         
         //Removes account from participation table
@@ -31,11 +31,11 @@
         if($connection->multi_query($sql) === true){
             $response = [
                 "status"=>true,
-                "message"=>"användare borttagen"
+                "message"=>"Användare borttagen"
             ];
         //failure    
         }else{
-            throw new Exception("kunde inte ta bort användare");
+            throw new Exception("Kunde inte ta bort användare");
         }
 
     }catch(Exception $exc){

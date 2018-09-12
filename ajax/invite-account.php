@@ -23,7 +23,7 @@
         $sql = "SELECT accountid FROM account WHERE email = '$email'";
         $result = $connection->query($sql);
         if($result->num_rows != 1){
-            throw new Exception("kunde inte hitta e-postadressen");
+            throw new Exception("Kunde inte hitta konto");
         }
         $invitedid = $result->fetch_assoc()["accountid"];
 
@@ -32,14 +32,14 @@
         $sql = "SELECT foraccountid FROM participation WHERE foraccountid = $accountid AND forprojectid = $projectid";
         $result = $connection->query($sql);
         if($result->num_rows != 1){
-            throw new Exception("inte ditt projekt");
+            throw new Exception("Inte ditt projekt");
         }
         
         // Is account already included? (solves inviting yourself)
         $sql = "SELECT 1 FROM participation WHERE foraccountid = $invitedid AND forprojectid = $projectid";
         $result = $connection->query($sql);
         if($result->num_rows != 0){
-            throw new Exception("personen är redan delaktig");
+            throw new Exception("Konto redan tillagt");
         }
        
         $sql = "INSERT INTO participation (forprojectid, foraccountid)
@@ -50,10 +50,10 @@
         if($connection->multi_query($sql) === true){
             $response = [
                 "status"=>true,
-                "message"=>"kontot bjöds in"
+                "message"=>"Inbjudan skickad"
             ];
         }else{
-            throw new Exception("kunde inte bjuda in konto");
+            throw new Exception("Kunde inte bjuda in konto");
         }
 
 

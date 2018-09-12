@@ -42,20 +42,20 @@
         //Query succeeded    
             $response = [
                 "status"=>true,
-                "message"=>"projekt borttaget"
+                "message"=>"Projekt borttaget"
             ];
         }else{
         //Query failed
             $response = [
                 "status"=>false,
-                "message"=>"kunde inte ta bort projekt"
+                "message"=>"Kunde inte ta bort projekt"
             ];
         }
     }else{
     // NO, unable to remove
         $response = [
             "status"=>false,
-            "message"=>"du har inte behörighet att ta bort"
+            "message"=>"Inte behörig att ta bort projekt"
         ];
     }    
     echo json_encode($response);

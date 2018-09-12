@@ -30,7 +30,7 @@
        //Query succeded
         $response = [
             "status" => true,
-            "message" => "projekt skapades",
+            "message" => "Projekt skapat",
             "project" => [
                 "projectid" => $connection->insert_id,
                 "projectname" => $projectname

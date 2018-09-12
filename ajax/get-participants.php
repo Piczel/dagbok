@@ -21,7 +21,7 @@
         $sql = "SELECT foraccountid FROM participation WHERE foraccountid = $accountid AND forprojectid = $projectid";
         $result = $connection->query($sql);
         if($result->num_rows != 1){
-            throw new Exception("inte ditt projekt");
+            throw new Exception("Inte ditt projekt");
         }
 
         $sql = "SELECT forename, surname, email, accountid FROM account INNER JOIN participation ON forprojectid = $projectid WHERE foraccountid = $accountid";
