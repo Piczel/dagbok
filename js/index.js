@@ -104,7 +104,7 @@ $(".form.register button.submit").on("click", function() {
 
 $(".form.sign-in button.submit").on("click", function() {
     a_signIn(function(response) {        
-        location.href = "account.php";
+        location.href = "project.php";
     }, function(response) {
         notifications.display(response.message);
     });

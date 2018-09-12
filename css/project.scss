@@ -1,0 +1,227 @@
+$brightest: #e6f1f7;
+$brighter: #cae0e9;
+$bright: #a1bec5;
+$base: #7298a1;
+$dark: #4e5f63;
+
+$confirm: #48b170;
+$decline: #b15848;
+
+$bezier: cubic-bezier(0.19, 0.83, 0.32, 0.96);
+
+@mixin text-border($color) {
+    text-shadow: -1px 0 $color, 0 1px $color, 1px 0 $color, 0 -1px $color;
+}
+
+@mixin outline($color) {
+    outline: {
+        color: $color;
+        offset: -2px;
+        style: auto;
+        width: 5px;
+    }
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    height: 100vh;
+}
+
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 0.4em;
+    flex-shrink: 0;
+    
+    .nav {
+        .sign-out {
+            padding: 0.4rem;
+            display: block;
+        }
+    }
+    .tools {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        
+        .tool {
+            margin: 0.4em;
+            padding: 0.4em;
+            
+            .icon {
+                font-size: 0.6em;
+            }
+        }
+    }
+
+}
+
+.top-bar .tools,
+.right-panel > * {
+    max-width: 26em;
+}
+
+.page-container {
+    display: flex;
+    height: 100%;
+
+    .timeline {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        align-items: center;
+
+        .axis-wrapper {
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            z-index: -1;
+            .axis {
+                margin-right: 12em;
+                background: rgba(255,255,255,0.6);
+                width: 2px;
+                height: 100%;
+                box-shadow: 0 0 1em 0 $brightest;
+            }
+        }
+
+        .note {
+            position: relative;
+            width: 34em;
+            margin-top: 3.4em;
+
+            .top {
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                position: absolute;
+                bottom: 100%;
+                padding: 0.4rem 0;
+                color: $base;
+                //@include text-border($bright);
+                
+                opacity: 0;
+                
+                .time::after {
+                    content: " min";
+                }
+
+                .time,
+                .date {
+                    opacity: 0.4;
+                    color: rgb(11, 32, 28);
+                    font-weight: 500;
+                }
+                
+                .delete {
+                    position: absolute;
+                    
+                }
+            }
+            .head {
+                display: flex;
+                align-items: center;
+                
+                
+                .title {
+                    border: 1px solid $bright;
+                    background-color: $brightest;
+                    width: 100%;
+                    margin: 0;
+                    padding: 0.8em 1.6rem;
+                    font: {
+                        weight: 400;
+                        size: 1.6em;
+                    }
+                    cursor: pointer;
+                    
+                    &:hover {
+                        @include outline($base);
+                    }
+                }
+
+                .creator-align {
+                    width: 0;
+                    height: 0;
+                    display: flex;
+                    align-items: center;
+                    justify-content: flex-start;
+                    overflow: visible;
+
+                    .creator {
+                        position: relative;
+                        left: 1.6rem;
+                        display: flex;
+                        align-items: center;
+        
+                        .initials {
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            font-size: 3em;
+                            font-family: "Unlock", cursive;
+                            color: $brightest;
+                            background-color: $base;
+                            border: 1px solid $dark;
+                            border-radius: 50%;
+                            width: 1.4em;
+                            height: 1.4em;
+                            cursor: default;
+                            flex-shrink: 0;
+                        }
+                        .name {
+                            display: none;
+                            white-space: nowrap;
+                            font-size: 1.2em;
+                            margin: 0 0.8rem;
+                            opacity: 0.4;
+                            color: rgb(11, 32, 28);
+                            font-weight: 600;
+                        }
+        
+                        &:hover {
+        
+                            .name {
+                                display: block;
+                            }
+                        }
+                    }
+                }
+            }
+            
+            
+            .expand {
+                padding: 0 1.6rem;
+                background-color: $brighter;
+                border: 1px solid $bright;
+                margin-top: -1px;
+                
+                display: none;
+            }
+        }
+    }
+
+    .right-panel {
+        height: 100%;
+        padding-top: 4em;
+        flex-shrink: 0;
+
+        > * {
+            max-height: 60%;
+        }
+
+        .participants {
+            
+        }
+    }
+}

@@ -310,7 +310,7 @@ $(".form.push-note button.submit").on("click", function() {
 });
 
 // Passes noteID stored in attribute
-$(".delete-note").on("click", function() {
+$(".note .delete").on("click", function() {
     a_deleteNote($(this).attr("noteid"), function(response) {
 
     }, function(response) {
@@ -376,11 +376,34 @@ $(".form.rename-project button.submit").on("click", function() {
 });
 
 
-// When document loads, fetch all projects
-$(".tab.").on("click", function() {
+// Fetch all projects
+$(".tab.show-my-projects").on("click", function() {
     a_getAllProjects(function(response) {
 
     }, function(response) {
 
     });
+});
+
+
+$(".note").on("mouseenter", function() {
+    effect.fadeIn($(this).find(".top"));
+});
+$(".note").on("mouseleave", function() {
+    effect.fadeOut($(this).find(".top"));
+});
+
+$(".note .title").on("click", function() {
+    let $expand = $(this).parent().parent().find(".expand");
+    if($expand.is(":hidden")) {
+        $expand.slideDown({
+            "easing" : $.bez([0.19, 0.83, 0.32, 0.96]),
+            "duration" : 200
+        });
+    } else {
+        $expand.slideUp({
+            "easing" : $.bez([0.19, 0.83, 0.32, 0.96]),
+            "duration" : 200
+        });
+    }
 });

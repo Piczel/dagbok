@@ -38,6 +38,31 @@ body {
   font-size: 0.9em;
 }
 
+.tabs {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  min-height: 5em;
+  padding: 0 1.2em;
+}
+.tabs .tab {
+  transition: all 200ms cubic-bezier(0.19, 0.83, 0.32, 0.96);
+  border-right: 1px solid #a1bec5;
+  border-left: 1px solid #a1bec5;
+  border-top: 1px solid #a1bec5;
+  background-color: #cae0e9;
+  cursor: pointer;
+  padding: 0.6rem 0.8rem;
+  margin: 0 0.4rem;
+  font-weight: 900;
+}
+.tabs .tab.active {
+  background-color: #e6f1f7;
+  cursor: default;
+  padding: 1.2rem 1.6rem;
+  font-size: 1.2em;
+}
+
 .form.register,
 .form.sign-in,
 .form.push-note {
@@ -66,15 +91,12 @@ body {
 .form.register input[type=text],
 .form.register input[type=email],
 .form.register input[type=password],
-.form.register button.submit,
 .form.sign-in input[type=text],
 .form.sign-in input[type=email],
 .form.sign-in input[type=password],
-.form.sign-in button.submit,
 .form.push-note input[type=text],
 .form.push-note input[type=email],
-.form.push-note input[type=password],
-.form.push-note button.submit {
+.form.push-note input[type=password] {
   display: block;
   border: none;
   border: 1px solid #cae0e9;
@@ -89,15 +111,12 @@ body {
 .form.register input[type=text]:focus,
 .form.register input[type=email]:focus,
 .form.register input[type=password]:focus,
-.form.register button.submit:focus,
 .form.sign-in input[type=text]:focus,
 .form.sign-in input[type=email]:focus,
 .form.sign-in input[type=password]:focus,
-.form.sign-in button.submit:focus,
 .form.push-note input[type=text]:focus,
 .form.push-note input[type=email]:focus,
-.form.push-note input[type=password]:focus,
-.form.push-note button.submit:focus {
+.form.push-note input[type=password]:focus {
   outline-color: #7298a1;
   outline-offset: -2px;
   outline-style: auto;
@@ -106,15 +125,12 @@ body {
 .form.register input[type=text]:hover,
 .form.register input[type=email]:hover,
 .form.register input[type=password]:hover,
-.form.register button.submit:hover,
 .form.sign-in input[type=text]:hover,
 .form.sign-in input[type=email]:hover,
 .form.sign-in input[type=password]:hover,
-.form.sign-in button.submit:hover,
 .form.push-note input[type=text]:hover,
 .form.push-note input[type=email]:hover,
-.form.push-note input[type=password]:hover,
-.form.push-note button.submit:hover {
+.form.push-note input[type=password]:hover {
   border: 1px solid #a1bec5;
 }
 .form.register input[type=text]:-webkit-autofill, .form.register input[type=text]:-webkit-autofill:hover, .form.register input[type=text]:-webkit-autofill:focus,
@@ -124,9 +140,6 @@ body {
 .form.register input[type=password]:-webkit-autofill,
 .form.register input[type=password]:-webkit-autofill:hover,
 .form.register input[type=password]:-webkit-autofill:focus,
-.form.register button.submit:-webkit-autofill,
-.form.register button.submit:-webkit-autofill:hover,
-.form.register button.submit:-webkit-autofill:focus,
 .form.sign-in input[type=text]:-webkit-autofill,
 .form.sign-in input[type=text]:-webkit-autofill:hover,
 .form.sign-in input[type=text]:-webkit-autofill:focus,
@@ -136,9 +149,6 @@ body {
 .form.sign-in input[type=password]:-webkit-autofill,
 .form.sign-in input[type=password]:-webkit-autofill:hover,
 .form.sign-in input[type=password]:-webkit-autofill:focus,
-.form.sign-in button.submit:-webkit-autofill,
-.form.sign-in button.submit:-webkit-autofill:hover,
-.form.sign-in button.submit:-webkit-autofill:focus,
 .form.push-note input[type=text]:-webkit-autofill,
 .form.push-note input[type=text]:-webkit-autofill:hover,
 .form.push-note input[type=text]:-webkit-autofill:focus,
@@ -147,10 +157,7 @@ body {
 .form.push-note input[type=email]:-webkit-autofill:focus,
 .form.push-note input[type=password]:-webkit-autofill,
 .form.push-note input[type=password]:-webkit-autofill:hover,
-.form.push-note input[type=password]:-webkit-autofill:focus,
-.form.push-note button.submit:-webkit-autofill,
-.form.push-note button.submit:-webkit-autofill:hover,
-.form.push-note button.submit:-webkit-autofill:focus {
+.form.push-note input[type=password]:-webkit-autofill:focus {
   color: inherit;
   border: 1px solid #a1bec5;
   -webkit-text-fill-color: inherit;
@@ -161,9 +168,14 @@ body {
 .form.register button.submit,
 .form.sign-in button.submit,
 .form.push-note button.submit {
-  border: 1px solid #a1bec5 !important;
-  width: unset !important;
-  cursor: pointer !important;
+  border: 1px solid #a1bec5;
+  cursor: pointer;
+  font-size: 1.2rem;
+  padding: 0.6rem 0.8rem;
+  background-color: #cae0e9;
+  color: #4e5f63;
+  margin-bottom: 0.4rem;
+  height: 2em;
 }
 .form.register button.submit:hover,
 .form.sign-in button.submit:hover,
@@ -172,6 +184,39 @@ body {
   outline-offset: -2px;
   outline-style: auto;
   outline-width: 5px;
+}
+
+.button {
+  border: 1px solid #a1bec5;
+  cursor: pointer;
+  font-size: 1.2rem;
+  padding: 0.6rem 0.8rem;
+  background-color: #cae0e9;
+  color: #4e5f63;
+}
+.button:hover {
+  outline-color: #7298a1;
+  outline-offset: -2px;
+  outline-style: auto;
+  outline-width: 5px;
+}
+
+.icon {
+  width: 2em;
+  height: 2em;
+  display: block;
+}
+.icon :not(.line) {
+  fill: #4e5f63;
+}
+.icon .line {
+  stroke-width: 3;
+  stroke: #4e5f63;
+  fill: none;
+}
+
+.js-elements {
+  display: none;
 }
 
 /*# sourceMappingURL=common.css.map */
