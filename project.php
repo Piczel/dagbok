@@ -12,7 +12,7 @@
     if(isset($_GET["pid"])) {
         $projectid = $_GET["pid"];
     } else {
-        $projectid = 1;
+        $projectid = 4;
     }
 
     include "php/database.php";
@@ -321,11 +321,26 @@
         </div>
         <div class="right-panel">
             <div class="participants" data-simplebar>
-                
+                <div class="member">
+                    <div class="member-icon">ON</div>
+                    <p>HELLO WORLD</p>
+                </div>
+                <div class="member">
+                    <div class="member-icon">ON</div>
+                    <p>HELLO WORLD</p>
+                </div>
+                <div class="member">
+                    <div class="member-icon">ON</div>
+                    <p>HELLO WORLD</p>
+                </div>   
+
+                               
             </div>
         </div>
     </div>
 
+    <div class="participants-icon"><span>M<!--Members--></span></div>
+    <div class="projects-icon"></span>P<!--Projects--></span></div>
     <div class="js-elements">
         
     </div>

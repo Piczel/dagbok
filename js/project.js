@@ -580,3 +580,7 @@ $(".note .title").on("click", function() {
         
     }
 });
+
+$(".participants-icon").on("click", function(){
+    $(".right-panel .participants").toggleClass("shown");
+});
