@@ -20,6 +20,7 @@
     //Creates a connection
     $mysql = $settings["mysql"];    
     $connection = new mysqli($mysql["host"], $mysql["username"], $mysql["password"], $mysql["dbname"]);
+    $connection->set_charset("utf8");
 
     $accountid = $input["accountid"];
     $noteid = $input["noteid"];

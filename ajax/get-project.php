@@ -1,5 +1,6 @@
 <?php
     $input = json_decode(file_get_contents("php://input"), true);   //Receives json input from client
+    $response = null;
     try {
         session_start();
         if(!isset($_SESSION["signedInAccountID"])){
@@ -14,7 +15,8 @@
         //Creates a connection
         $mysql = $settings["mysql"];
         $connection = new mysqli($mysql["host"], $mysql["username"], $mysql["password"], $mysql["dbname"]);
-        
+        $connection->set_charset("utf8");
+
         $accountid = $input["accountid"];
         $projectid = $input["projectid"];
         
@@ -43,12 +45,12 @@
         while($row = $result->fetch_assoc()){
             $project["notes"][] = $row;
         }
-
         $response = [
             "status"=>true,
             "message"=>"projekt hämtat",
             "project"=>$project
         ];
+        
     }catch(Exception $exc){
         $response = [
             "status"=>false,

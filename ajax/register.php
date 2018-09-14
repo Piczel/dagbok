@@ -5,7 +5,8 @@
     //Creates a connection
     $mysql = $settings["mysql"];    
     $connection = new mysqli($mysql["host"], $mysql["username"], $mysql["password"], $mysql["dbname"]);
-    
+    $connection->set_charset("utf8");
+
     $sql = "INSERT INTO account (forename, surname, email, `password`) VALUES ('".$input["forename"]."','".$input["surname"]."','".$input["email"]."','".$input["password"]."')";
 
     //echo $sql."<br>";
