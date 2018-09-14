@@ -10,7 +10,8 @@
                 "noteid" : 3,
                 "creationdate" : "2018-09-07 14:35",
                 "title" : "Detta gjorde jag",
-                "creatorname" : "Samuel Eckerrot",
+                "forename" : "Samuel",
+                "surname" : "Eckerrot",
                 "worktime" : 60,
 
                 "notetext" : "Detta är en mycket längre förklaring av vad jag gjorde",
@@ -20,7 +21,8 @@
                 "noteid" : 8,
                 "creationdate" : "2018-09-11 16:25",
                 "title" : "Detta gjorde jag",
-                "creatorname" : "Oskar Nylin",
+                "forename" : "Oskar",
+                "surname" : "Nylin",
                 "worktime" : 45,
 
                 "notetext" : "Detta är en mycket längre förklaring av vad jag gjorde",

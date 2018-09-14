@@ -42,7 +42,7 @@
     }else{
         $response = [
             "status" => false,
-            "message" => "Felakgtig mail"
+            "message" => "Felakgtig E-post"
         ];
     }
     echo json_encode($response);

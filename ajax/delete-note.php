@@ -40,18 +40,18 @@
         if($connection->multi_query($sql) === true){
             $response = [
                 "status"=>true,
-                "message"=>"anteckning borttagen"
+                "message"=>"Anteckning borttagen"
             ];
         }else{
             $response = [
                 "status"=>true,
-                "message"=>"kunde inte ta bort anteckning"
+                "message"=>"Kunde inte ta bort anteckning"
             ];
         }
     }else{
         $response = [
             "status"=>false,
-            "message"=>"inte ditt projekt"
+            "message"=>"Inte ditt projekt"
         ];
     }
     echo json_encode($response);
