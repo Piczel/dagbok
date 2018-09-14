@@ -5,7 +5,8 @@
     //Creates a connection
     $mysql = $settings["mysql"];
     $connection = new mysqli($mysql["host"], $mysql["username"], $mysql["password"], $mysql["dbname"]);
-    
+    $connection->set_charset("utf8");
+
     $email = $input["email"];
     $password = $input["password"];
 

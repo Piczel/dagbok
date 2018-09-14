@@ -20,7 +20,8 @@
     //Creates a connection
     $mysql = $settings["mysql"];
     $connection = new mysqli($mysql["host"], $mysql["username"], $mysql["password"], $mysql["dbname"]);
-    
+    $connection->set_charset("utf8");
+
     //Inserts data into an array
     $projectname = $input["projectname"];
 
