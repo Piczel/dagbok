@@ -48,31 +48,3 @@ $bezier: cubic-bezier(0.19, 0.83, 0.32, 0.96);
     display: block;
 }
 
-.tabs {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    min-height: 5em;
-    padding: 0 1.2em;
-
-    .tab {
-        transition: all 200ms $bezier;
-        border-right: 1px solid $bright;
-        border-left: 1px solid $bright;
-        border-top: 1px solid $bright;
-        background-color: $brighter;
-        cursor: pointer;
-        padding: 0.6rem 0.8rem;
-        margin: 0 0.4rem;
-        font: {
-            weight: 900;
-        }
-        
-        &.active {
-            background-color: $brightest;
-            cursor: default;
-            padding: 1.2rem 1.6rem;
-            font-size: 1.2em;
-        }
-    }
-}

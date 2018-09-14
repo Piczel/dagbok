@@ -20,18 +20,34 @@ async function a_register(
 
     // Validates input fields
     if(password != repassword) {
+        rejected({
+            "status" : false,
+            "message" : "Lösenorden matchar inte"
+        });
         return;
     } else if(email.length < 1) {
-
+        rejected({
+            "status" : false,
+            "message" : "Ange en e-postadress"
+        });
         return;
     } else if(password.length < 1) {
-        
+        rejected({
+            "status" : false,
+            "message" : "Ange ett lösenord"
+        });
         return;
     } else if(forename.length < 1) {
-        
+        rejected({
+            "status" : false,
+            "message" : "Ange förnamn"
+        });
         return;
     } else if(surname.length < 1) {
-        
+        rejected({
+            "status" : false,
+            "message" : "Ange efternamn"
+        });
         return;
     }
 
@@ -64,10 +80,16 @@ async function a_signIn(
 
     // Validates input fields
     if(email.length < 1) {
-
+        rejected({
+            "status" : false,
+            "message" : "Ange din e-postadress"
+        });
         return;
     } else if(password.length < 1) {
-        
+        rejected({
+            "status" : false,
+            "message" : "Ange ditt lösenord"
+        });
         return;
     }
 
@@ -104,7 +126,7 @@ $(".form.register button.submit").on("click", function() {
 
 $(".form.sign-in button.submit").on("click", function() {
     a_signIn(function(response) {        
-        location.href = "account.php";
+        location.href = "project.php";
     }, function(response) {
         notifications.display(response.message);
     });

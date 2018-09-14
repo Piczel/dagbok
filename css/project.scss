@@ -1,0 +1,383 @@
+$brightest: #e6f1f7;
+$brighter: #cae0e9;
+$bright: #a1bec5;
+$base: #7298a1;
+$dark: #4e5f63;
+
+$confirm: #48b170;
+$decline: #b15848;
+
+$bezier: cubic-bezier(0.19, 0.83, 0.32, 0.96);
+
+@mixin text-border($color) {
+    text-shadow: -1px 0 $color, 0 1px $color, 1px 0 $color, 0 -1px $color;
+}
+
+@mixin outline($color) {
+    outline: {
+        color: $color;
+        offset: -2px;
+        style: auto;
+        width: 5px;
+    }
+}
+
+body {
+    height: 100vh;
+}
+
+.top-bar {
+    width: 100%;
+    position: absolute;
+    display: flex;
+    align-items: flex-start;
+    padding: 0.4em;
+    flex-shrink: 0;
+    z-index: 2;
+    
+    .nav {
+        display: flex;
+        justify-content: flex-start;
+
+        > *:not(:first-child) {
+            margin-left: 0.8rem;
+        }
+        .sign-out {
+            padding: 0.4rem;
+            display: block;
+        }
+        .main {
+            border-bottom: 0.1em solid $bright;
+            font: {
+                family: 'Unlock', cursive;
+                size: 2.8em;
+                weight: 900;
+            }
+        }
+    }
+    .tools {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        
+        .tool {
+            margin: 0.4em;
+            padding: 0.4em;
+            
+            .icon {
+                font-size: 0.6em;
+            }
+        }
+    }
+
+}
+
+.top-bar .tools,
+.right-panel > * {
+    max-width: 26em;
+}
+
+
+.add-note {
+    position: absolute;
+    z-index: 2;
+    left: 1.6rem;
+    bottom: 1.6rem;
+    cursor: pointer;
+    font-size: 2em;
+    border-radius: 50%;
+    
+    &:hover {
+        .glow {
+            filter: blur(8px) !important;
+           
+            &:last-child {
+                opacity: 1 !important;
+            }
+        }
+
+    }
+
+    .icon {
+        .line {
+            stroke: $brightest;
+            stroke-width: 6;
+        }
+        &.glow {
+            position: absolute;
+            top: 0rem;
+            left: 0rem;
+            filter: blur(4px);
+            transition: all 200ms $bezier;
+
+            &:last-child {
+                opacity: 0;
+            }
+        }
+    }
+}
+.push-note-align {
+    width: 0;
+    height: 0;
+    position: absolute;
+    left: 25%;
+    top: 50%;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: visible;
+    z-index: 3;
+    opacity: 0;
+    
+    &.shown {
+        display: flex;
+    }
+
+    .push-note-heading {
+        flex-shrink: 0;
+        font-size: 1.2em;
+        padding: 1.2rem 1.6rem;
+        width: 12.8rem;
+        margin-right: 26rem - 12.8rem - 3.2rem;
+        background-color: $brightest;
+        font-weight: 900;
+        border-top: 1px solid $bright;
+        border-left: 1px solid $bright;
+        border-right: 1px solid $bright;
+    }
+
+    .form.push-note {
+        width: 26rem;
+        flex-shrink: 0;
+
+        .creator {
+            display: flex;
+            justify-content: flex-end;
+
+            .initials {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: 2em;
+                font-family: "Unlock", cursive;
+                color: $brightest;
+                background-color: $base;
+                border: 1px solid $dark;
+                border-radius: 50%;
+                width: 1.4em;
+                height: 1.4em;
+                cursor: default;
+            }
+        }
+    }
+}
+
+
+.page-container {
+    display: flex;
+    height: 100%;
+
+    .timeline {
+        position: relative;
+        width: 100%;
+        height: 100%;        
+
+        .axis-wrapper {
+            height: 100%;
+            width: 60vw;
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            z-index: -1;
+            
+            .axis {
+                left: 1.6em;
+                background-color: rgba(255,255,255,0.6);
+                width: 2px;
+                height: 100%;
+                box-shadow: 0 0 1em 0 $brightest;
+                position: relative;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                
+                .indicator-align {
+                    width: 0;
+                    height: 0;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    overflow: visible;
+                    
+                    .indicator {
+                        flex-shrink: 0;
+                        height: 2px;
+                        width: 26px;
+                        box-shadow: 0 0 1em 0 $brightest;
+                        background-color: rgba(255,255,255,0.6);
+                    }
+                }
+            }
+        }
+        
+        .note-wrapper {
+            display: flex;
+            justify-content: flex-end;
+            width: 60vw;
+            
+            &:nth-child(2) {
+                margin-top: 40vh;
+            }
+            &:last-child {
+                margin-bottom: 50vh;
+            }
+        }
+        .note {
+            position: relative;
+            margin-top: 3.4em;
+            max-width: 50vw !important;
+
+            .top {
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                position: absolute;
+                bottom: 100%;
+                padding: 0.4rem 0;
+                color: $base;
+                
+                opacity: 0;
+                
+                .time::after {
+                    content: " min";
+                }
+
+                .time,
+                .date {
+                    opacity: 0.4;
+                    color: rgb(11, 32, 28);
+                    font-weight: 500;
+                }
+                
+                .delete {
+                    position: absolute;
+                    
+                }
+            }
+            .head {
+                display: flex;
+                align-items: center;
+                
+                
+                .title {
+                    border: 1px solid $bright;
+                    background-color: $brightest;
+                    max-width: 100%;
+                    
+                    margin: 0;
+                    padding: 0.8rem 1.6rem;
+                    font: {
+                        weight: 400;
+                        size: 1.6em;
+                    }
+                    cursor: pointer;
+                    
+                    &:hover {
+                        @include outline($base);
+                    }
+                }
+
+                .creator-align {
+                    width: 0;
+                    height: 0;
+                    display: flex;
+                    align-items: center;
+                    justify-content: flex-start;
+                    overflow: visible;
+
+                    .creator {
+                        position: relative;
+                        left: 3.2rem;
+                        display: flex;
+                        align-items: center;
+        
+                        .initials {
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            font-size: 3em;
+                            font-family: "Unlock", cursive;
+                            color: $brightest;
+                            background-color: $base;
+                            border: 1px solid $dark;
+                            border-radius: 50%;
+                            width: 1.4em;
+                            height: 1.4em;
+                            cursor: default;
+                            flex-shrink: 0;
+                        }
+                        .name {
+                            display: none;
+                            white-space: nowrap;
+                            font-size: 1.2em;
+                            margin: 0 0.8rem;
+                            opacity: 0.4;
+                            color: rgb(11, 32, 28);
+                            font-weight: 600;
+                        }
+        
+                        &:hover {
+        
+                            .name {
+                                display: block;
+                            }
+                        }
+                    }
+                }
+            }
+            
+            
+            .expand {
+                padding: 0 1.6rem;
+                background-color: $brighter;
+                border: 1px solid $bright;
+                margin-top: -1px;
+                display: none;
+
+                .content {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-start;
+                }
+
+                .text {
+                    padding: 0.4rem 0;
+                    margin: 1.2em 0;
+
+                    &.irreg {
+                        align-self: flex-end;
+                        border-top: 1px solid $bright;
+                        color: $base;
+                        padding-left: 1.6rem;
+                    }
+                }
+            }
+        }
+    }
+
+    .right-panel {
+        height: 100%;
+        padding-top: 4em;
+        flex-shrink: 0;
+
+        > * {
+            max-height: 60%;
+        }
+
+        .participants {
+            
+        }
+    }
+}

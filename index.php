@@ -24,8 +24,10 @@
     <script src="https://unpkg.com/simplebar@latest/dist/simplebar.js"></script>
 
     <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/jquery.bez.min.js"></script>
+    
     <script src="js/ajax.js"></script>
-    <script src="js/notifications.js"></script>
+    <script src="js/common.js"></script>
 
 </head>
 <body >

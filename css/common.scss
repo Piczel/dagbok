@@ -7,6 +7,35 @@ $dark: #4e5f63;
 $confirm: #48b170;
 $decline: #b15848;
 
+$bezier: cubic-bezier(0.19, 0.83, 0.32, 0.96);
+
+@mixin outline($color) {
+    outline: {
+        color: $color;
+        offset: -2px;
+        style: auto;
+        width: 5px;
+    }
+}
+
+@mixin button() {
+    border: 1px solid $bright;
+    cursor: pointer;
+    font-size: 1.2rem;
+    padding: 0.6rem 0.8rem;
+    background-color: $brighter;
+    color: $dark;
+
+    &:hover {
+        @include outline($base);
+    }
+    &:focus {
+        @include outline($base);
+    }
+}
+
+
+
 body {
     margin: 0;
     background-color: $brightest;
@@ -46,6 +75,36 @@ body {
 }
 
 
+
+.tabs {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    min-height: 5em;
+    padding: 0 1.2em;
+
+    .tab {
+        transition: all 200ms $bezier;
+        border-right: 1px solid $bright;
+        border-left: 1px solid $bright;
+        border-top: 1px solid $bright;
+        background-color: $brighter;
+        cursor: pointer;
+        padding: 0.6rem 0.8rem;
+        margin: 0 0.4rem;
+        font: {
+            weight: 900;
+        }
+        
+        &.active {
+            background-color: $brightest;
+            cursor: default;
+            padding: 1.2rem 1.6rem;
+            font-size: 1.2em;
+        }
+    }
+}
+
 .form.register,
 .form.sign-in,
 .form.push-note  {
@@ -59,10 +118,21 @@ body {
         padding: 0.8rem 0;
         width: 100%;
     }
+    .row {
+        display: flex;
+        
+        > *:not(:first-child) {
+            margin-left: 0.8rem;
+        }
+    }
     .center {
         display: flex;
         justify-content: center;
         align-items: center;
+        
+        > *:not(:first-child) {
+            margin-left: 0.8rem;
+        }
     }
 
     .input-label {
@@ -72,25 +142,27 @@ body {
     input[type=text],
     input[type=email],
     input[type=password],
-    button.submit {
+    textarea {
         display: block;
         border: none;
         border: 1px solid $brighter;
         color: inherit;
-        font-size: 1.2rem;
-        height: 2em;
+        font: {
+            size: 1.2rem;
+            family: inherit; 
+        }
         padding: 0.6rem 0.8rem;
         background-color: $brighter;
         margin-bottom: 0.4rem;
         width: 100%;
+        resize: none;
 
+        &:not(textarea) {
+            height: 2em;
+        }
+        
         &:focus {
-            outline: {
-                color: $base;
-                offset: -2px;
-                style: auto;
-                width: 5px;
-            }
+            @include outline($base);
         }
         &:hover {
             border: 1px solid $bright;
@@ -107,18 +179,32 @@ body {
             transition: background-color 5000s ease-in-out 0s;
         }
     }
-    button.submit {
-        border: 1px solid $bright !important;
-        width: unset !important;
-        cursor: pointer !important;
-
-        &:hover {
-            outline: {
-                color: $base;
-                offset: -2px;
-                style: auto;
-                width: 5px;
-            }
-        }
+    button {
+        @include button();
+        margin-bottom: 0.4rem;
+        height: 2em;
     }
+}
+
+.button {
+    @include button();
+}
+.icon {
+    width: 2em;
+    height: 2em;
+    display: block;
+
+    :not(.line) {
+        fill: $dark;
+    }
+    .line {
+        stroke-width: 3;
+        stroke: $dark;
+        fill: none;
+    }
+}
+
+
+.js-elements {
+    display: none;
 }
