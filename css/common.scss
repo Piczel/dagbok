@@ -29,6 +29,9 @@ $bezier: cubic-bezier(0.19, 0.83, 0.32, 0.96);
     &:hover {
         @include outline($base);
     }
+    &:focus {
+        @include outline($base);
+    }
 }
 
 
@@ -115,10 +118,21 @@ body {
         padding: 0.8rem 0;
         width: 100%;
     }
+    .row {
+        display: flex;
+        
+        > *:not(:first-child) {
+            margin-left: 0.8rem;
+        }
+    }
     .center {
         display: flex;
         justify-content: center;
         align-items: center;
+        
+        > *:not(:first-child) {
+            margin-left: 0.8rem;
+        }
     }
 
     .input-label {
@@ -127,18 +141,26 @@ body {
     
     input[type=text],
     input[type=email],
-    input[type=password]{
+    input[type=password],
+    textarea {
         display: block;
         border: none;
         border: 1px solid $brighter;
         color: inherit;
-        font-size: 1.2rem;
-        height: 2em;
+        font: {
+            size: 1.2rem;
+            family: inherit; 
+        }
         padding: 0.6rem 0.8rem;
         background-color: $brighter;
         margin-bottom: 0.4rem;
         width: 100%;
+        resize: none;
 
+        &:not(textarea) {
+            height: 2em;
+        }
+        
         &:focus {
             @include outline($base);
         }
@@ -157,7 +179,7 @@ body {
             transition: background-color 5000s ease-in-out 0s;
         }
     }
-    button.submit {
+    button {
         @include button();
         margin-bottom: 0.4rem;
         height: 2em;
