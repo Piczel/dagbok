@@ -1,6 +1,7 @@
 <?php
     $input = json_decode(file_get_contents("php://input"), true);   //Receives json input from client
     try {
+        session_start();
         if(!isset($_SESSION["signedInAccountID"])){
             throw new Exception("Inte inloggad");
         }
