@@ -33,7 +33,7 @@
         VALUES (
         '".$input["creationdate"]."',
         '".$input["title"]."',
-        '".$input["worktime"]."',
+        ".$input["worktime"].",
         '".$input["notetext"]."',
         '".$input["irregtext"]."',
         ".$input["accountid"].",

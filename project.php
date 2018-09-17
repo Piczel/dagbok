@@ -12,7 +12,7 @@
     if(isset($_GET["pid"])) {
         $projectid = $_GET["pid"];
     } else {
-        $projectid = 1;
+        $projectid = 0;
     }
 
     include "php/database.php";
@@ -147,175 +147,36 @@
                     </div>
                 </div>
             </div>
-
-            <div class="note-wrapper">
-                <div class="note">
-                    <div class="top">
-                        <div class="date">2018-09-07 14:35</div>
-                        <div class="time">60</div>
-                        <div class="delete" noteid="3"></div>
-                    </div>
-                    <div class="head">
-                        <h2 class="title">Detta gjorde jag</h2>
-                        <div class="creator-align"> 
-                            <div class="creator">
-                                <div class="initials"><span>SE</span></div>
-                                <div class="name">Samuel Eckerrot</div>
+            <div class="viewport">
+                <!--
+                <div class="note-wrapper" style="opacity: 1;">
+                    <div class="note">
+                        <div class="top">
+                            <div class="date">2018-09-07 14:35</div>
+                            <div class="time">60</div>
+                            <div class="delete" noteid="3"></div>
+                        </div>
+                        <div class="head">
+                            <h2 class="title">Detta gjorde jag</h2>
+                            <div class="creator-align"> 
+                                <div class="creator">
+                                    <div class="initials"><span>SE</span></div>
+                                    <div class="name">Samuel Eckerrot</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="expand">
+                            <div class="content">
+                                <p class="text">Detta är en mycket längre förklaring av vad jag gjorde</p>
+                                <p class="text irreg">Inget särskilt att notera</p>
                             </div>
                         </div>
                     </div>
-                    <div class="expand">
-                        <div class="content">
-                            <p class="text">Detta är en mycket längre förklaring av vad jag gjorde</p>
-                            <p class="text irreg">Inget särskilt att notera</p>
-                        </div>
-                    </div>
                 </div>
-            </div>
-            <div class="note-wrapper">
-                <div class="note">
-                    <div class="top">
-                        <div class="date">2018-09-07 14:35</div>
-                        <div class="time">60</div>
-                        <div class="delete" noteid="3"></div>
-                    </div>
-                    <div class="head">
-                        <h2 class="title">Detta gjorde jag</h2>
-                        <div class="creator-align"> 
-                            <div class="creator">
-                                <div class="initials"><span>SE</span></div>
-                                <div class="name">Samuel Eckerrot</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="expand">
-                        <div class="content">
-                            <p class="text">Detta är en mycket längre förklaring av vad jag gjorde</p>
-                            <p class="text irreg">Inget särskilt att notera</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="note-wrapper">
-                <div class="note">
-                    <div class="top">
-                        <div class="date">2018-09-07 14:35</div>
-                        <div class="time">60</div>
-                        <div class="delete" noteid="3"></div>
-                    </div>
-                    <div class="head">
-                        <h2 class="title">Detta gjorde jag</h2>
-                        <div class="creator-align"> 
-                            <div class="creator">
-                                <div class="initials"><span>SE</span></div>
-                                <div class="name">Samuel Eckerrot</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="expand">
-                        <div class="content">
-                            <p class="text">Detta är en mycket längre förklaring av vad jag gjorde</p>
-                            <p class="text irreg">Inget särskilt att notera</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="note-wrapper">
-                <div class="note">
-                    <div class="top">
-                        <div class="date">2018-09-07 14:35</div>
-                        <div class="time">60</div>
-                        <div class="delete" noteid="3"></div>
-                    </div>
-                    <div class="head">
-                        <h2 class="title">Detta gjorde jag</h2>
-                        <div class="creator-align"> 
-                            <div class="creator">
-                                <div class="initials"><span>SE</span></div>
-                                <div class="name">Samuel Eckerrot</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="expand">
-                        <div class="content">
-                            <p class="text">Detta är en mycket längre förklaring av vad jag gjorde</p>
-                            <p class="text irreg">Inget särskilt att notera</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="note-wrapper">
-                <div class="note">
-                    <div class="top">
-                        <div class="date">2018-09-07 14:35</div>
-                        <div class="time">60</div>
-                        <div class="delete" noteid="3"></div>
-                    </div>
-                    <div class="head">
-                        <h2 class="title">Detta gjorde jag</h2>
-                        <div class="creator-align"> 
-                            <div class="creator">
-                                <div class="initials"><span>SE</span></div>
-                                <div class="name">Samuel Eckerrot</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="expand">
-                        <div class="content">
-                            <p class="text">Detta är en mycket längre förklaring av vad jag gjorde</p>
-                            <p class="text irreg">Inget särskilt att notera</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="note-wrapper">
-                <div class="note">
-                    <div class="top">
-                        <div class="date">2018-09-07 14:35</div>
-                        <div class="time">60</div>
-                        <div class="delete" noteid="3"></div>
-                    </div>
-                    <div class="head">
-                        <h2 class="title">Detta gjorde jag</h2>
-                        <div class="creator-align"> 
-                            <div class="creator">
-                                <div class="initials"><span>SE</span></div>
-                                <div class="name">Samuel Eckerrot</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="expand">
-                        <div class="content">
-                            <p class="text">Detta är en mycket längre förklaring av vad jag gjorde</p>
-                            <p class="text irreg">Inget särskilt att notera</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="note-wrapper">
-                <div class="note">
-                    <div class="top">
-                        <div class="date">2018-09-07 14:35</div>
-                        <div class="time">60</div>
-                        <div class="delete" noteid="3"></div>
-                    </div>
-                    <div class="head">
-                        <h2 class="title">Detta gjorde jag</h2>
-                        <div class="creator-align"> 
-                            <div class="creator">
-                                <div class="initials"><span>SE</span></div>
-                                <div class="name">Samuel Eckerrot</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="expand">
-                        <div class="content">
-                            <p class="text">Detta är en mycket längre förklaring av vad jag gjorde</p>
-                            <p class="text irreg">Inget särskilt att notera</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            </div>-->
+            
+            
+        
             
             
         </div>
@@ -327,7 +188,30 @@
     </div>
 
     <div class="js-elements">
-        
+        <div class="note-wrapper">
+            <div class="note">
+                <div class="top">
+                    <div class="date"></div>
+                    <div class="time"></div>
+                    <div class="delete" noteid=""></div>
+                </div>
+                <div class="head">
+                    <h2 class="title"></h2>
+                    <div class="creator-align"> 
+                        <div class="creator">
+                            <div class="initials"><span></span></div>
+                            <div class="name"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="expand">
+                    <div class="content">
+                        <p class="text">Detta är en mycket längre förklaring av vad jag gjorde</p>
+                        <p class="text irreg">Inget särskilt att notera</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
 <!--

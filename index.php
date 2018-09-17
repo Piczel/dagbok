@@ -3,7 +3,7 @@
 
 
     if(isset($_SESSION["signedInAccountID"])) {
-        header("location:account.php");
+        header("location:project.php");
     }
 ?>
 

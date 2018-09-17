@@ -129,7 +129,7 @@ body {
     overflow: visible;
     z-index: 3;
     opacity: 0;
-    
+
     &.shown {
         display: flex;
     }
@@ -181,7 +181,11 @@ body {
     .timeline {
         position: relative;
         width: 100%;
-        height: 100%;        
+        height: 100%;
+        
+        .viewport {
+            padding: 50vh 0;
+        }
 
         .axis-wrapper {
             height: 100%;
@@ -226,13 +230,8 @@ body {
             display: flex;
             justify-content: flex-end;
             width: 60vw;
+            opacity: 0;
             
-            &:nth-child(2) {
-                margin-top: 40vh;
-            }
-            &:last-child {
-                margin-bottom: 50vh;
-            }
         }
         .note {
             position: relative;
