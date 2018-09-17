@@ -3,7 +3,8 @@ let notifications = {
 };
 let effect = {
     fadeIn : fadeIn,
-    fadeOut : fadeOut
+    fadeOut : fadeOut,
+    collapseHeight : collapseHeight
 };
 
 
@@ -63,6 +64,18 @@ function fadeIn($jElement, done = function(){}) {
     $jElement.animate({
         "opacity" : 1
     }, {
+        "duration" : 300,
+        "queue" : false,
+        "complete" : function() {
+            done();
+        },
+        "easing" : $.bez([0.19, 0.83, 0.32, 0.96])
+    });
+}
+
+// Collapse effect
+function collapseHeight($jElement, done = function(){}) {
+    $jElement.slideUp({
         "duration" : 300,
         "queue" : false,
         "complete" : function() {
