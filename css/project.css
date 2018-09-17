@@ -3,17 +3,19 @@ body {
 }
 
 .top-bar {
-  width: 100%;
+  width: 60vw;
   position: absolute;
   display: flex;
   align-items: flex-start;
-  padding: 0.4em;
-  flex-shrink: 0;
+  justify-content: space-between;
   z-index: 2;
 }
 .top-bar .nav {
   display: flex;
+  padding: 0.4em;
   justify-content: flex-start;
+  width: 100%;
+  flex-grow: 1;
 }
 .top-bar .nav > *:not(:first-child) {
   margin-left: 0.8rem;
@@ -28,17 +30,70 @@ body {
   font-size: 2.8em;
   font-weight: 900;
 }
-.top-bar .tools {
+.top-bar .project-name {
   display: flex;
-  align-items: center;
   justify-content: flex-start;
+  align-items: center;
+  padding-top: 0.4rem;
 }
-.top-bar .tools .tool {
-  margin: 0.4em;
-  padding: 0.4em;
+.top-bar .project-name input {
+  font-size: 4.8em;
+  font-weight: 600;
+  font-font-family: inherit;
+  text-align: right;
+  background-color: unset;
+  border: none;
+  padding: 0.4rem 0;
+  color: #a1bec5;
+  width: 44rem;
+  padding-right: 0.8rem;
+  margin-right: -0.8rem;
 }
-.top-bar .tools .tool .icon {
-  font-size: 0.6em;
+.top-bar .project-name input:focus {
+  outline: none;
+}
+.top-bar .project-name input::placeholder {
+  color: #cae0e9;
+}
+.top-bar .project-name .buttons-align {
+  display: flex;
+  position: relative;
+  left: 3.2rem;
+  width: 0;
+  flex-grow: 0;
+  transition: opacity 300ms cubic-bezier(0.19, 0.83, 0.32, 0.96);
+  opacity: 0;
+}
+.top-bar .project-name .buttons-align .button {
+  font-size: 0.6rem;
+  transition: transform 300ms cubic-bezier(0.19, 0.83, 0.32, 0.96);
+}
+.top-bar .project-name .buttons-align .confirm,
+.top-bar .project-name .buttons-align .reject {
+  pointer-events: none;
+  transform: scale(0);
+}
+.top-bar .project-name .buttons-align .edit {
+  position: absolute;
+}
+.top-bar .project-name .buttons-align .reject {
+  margin-left: 0.4rem;
+}
+.top-bar .project-name.edit input {
+  background-color: #cae0e9;
+  color: #7298a1;
+}
+.top-bar .project-name.edit .confirm,
+.top-bar .project-name.edit .reject {
+  transform: scale(1);
+  pointer-events: all;
+}
+.top-bar .project-name.edit .edit {
+  transform: scale(0);
+  pointer-events: none;
+}
+.top-bar .project-name.edit .buttons-align, .top-bar .project-name:hover .buttons-align {
+  opacity: 1;
 }
 
 .top-bar .tools,
@@ -205,9 +260,6 @@ body {
   color: #0b201c;
   font-weight: 500;
 }
-.page-container .timeline .note .top .delete {
-  position: absolute;
-}
 .page-container .timeline .note .head {
   display: flex;
   align-items: center;
@@ -216,17 +268,46 @@ body {
   border: 1px solid #a1bec5;
   background-color: #e6f1f7;
   max-width: 100%;
+  min-width: 9em;
   margin: 0;
   padding: 0.8rem 1.6rem;
   font-weight: 400;
   font-size: 1.6em;
   cursor: pointer;
+  flex-shrink: 1;
 }
 .page-container .timeline .note .head .title:hover {
   outline-color: #7298a1;
   outline-offset: -2px;
   outline-style: auto;
   outline-width: 5px;
+}
+.page-container .timeline .note .head .delete-align {
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 0;
+  height: 0;
+  overflow: visible;
+}
+.page-container .timeline .note .head .delete {
+  width: 2em;
+  opacity: 0;
+  cursor: pointer;
+  margin-right: 0.8rem;
+  pointer-events: none;
+  transition: opacity 300ms cubic-bezier(0.19, 0.83, 0.32, 0.96);
+}
+.page-container .timeline .note .head .delete .lid {
+  transition: transform 300ms cubic-bezier(0.19, 0.83, 0.32, 0.96);
+}
+.page-container .timeline .note .head .delete.shown {
+  opacity: 1;
+  pointer-events: all;
+}
+.page-container .timeline .note .head .delete:hover .lid {
+  transform: translateY(-0.5em);
 }
 .page-container .timeline .note .head .creator-align {
   width: 0;

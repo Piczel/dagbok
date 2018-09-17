@@ -18,6 +18,11 @@ body {
   box-sizing: border-box;
 }
 
+::selection {
+  color: #cae0e9;
+  background-color: #4e5f63;
+}
+
 .notification {
   background-color: #e6f1f7;
   position: fixed;
@@ -65,42 +70,50 @@ body {
 
 .form.register,
 .form.sign-in,
-.form.push-note {
+.form.push-note,
+.dialogue.confirm {
   border: 1px solid #a1bec5;
   padding: 1.6rem;
   background-color: #e6f1f7;
 }
 .form.register .group,
 .form.sign-in .group,
-.form.push-note .group {
+.form.push-note .group,
+.dialogue.confirm .group {
   padding: 0.8rem 0;
   width: 100%;
 }
 .form.register .row,
 .form.sign-in .row,
-.form.push-note .row {
+.form.push-note .row,
+.dialogue.confirm .row {
   display: flex;
 }
 .form.register .row > *:not(:first-child),
 .form.sign-in .row > *:not(:first-child),
-.form.push-note .row > *:not(:first-child) {
+.form.push-note .row > *:not(:first-child),
+.dialogue.confirm .row > *:not(:first-child) {
   margin-left: 0.8rem;
+  width: 45%;
 }
 .form.register .center,
 .form.sign-in .center,
-.form.push-note .center {
+.form.push-note .center,
+.dialogue.confirm .center {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 .form.register .center > *:not(:first-child),
 .form.sign-in .center > *:not(:first-child),
-.form.push-note .center > *:not(:first-child) {
+.form.push-note .center > *:not(:first-child),
+.dialogue.confirm .center > *:not(:first-child) {
   margin-left: 0.8rem;
 }
 .form.register .input-label,
 .form.sign-in .input-label,
-.form.push-note .input-label {
+.form.push-note .input-label,
+.dialogue.confirm .input-label {
   padding: 0 0.8rem;
 }
 .form.register input[type=text],
@@ -114,7 +127,11 @@ body {
 .form.push-note input[type=text],
 .form.push-note input[type=email],
 .form.push-note input[type=password],
-.form.push-note textarea {
+.form.push-note textarea,
+.dialogue.confirm input[type=text],
+.dialogue.confirm input[type=email],
+.dialogue.confirm input[type=password],
+.dialogue.confirm textarea {
   display: block;
   border: none;
   border: 1px solid #cae0e9;
@@ -138,7 +155,11 @@ body {
 .form.push-note input[type=text]:not(textarea),
 .form.push-note input[type=email]:not(textarea),
 .form.push-note input[type=password]:not(textarea),
-.form.push-note textarea:not(textarea) {
+.form.push-note textarea:not(textarea),
+.dialogue.confirm input[type=text]:not(textarea),
+.dialogue.confirm input[type=email]:not(textarea),
+.dialogue.confirm input[type=password]:not(textarea),
+.dialogue.confirm textarea:not(textarea) {
   height: 2em;
 }
 .form.register input[type=text]:focus,
@@ -152,7 +173,11 @@ body {
 .form.push-note input[type=text]:focus,
 .form.push-note input[type=email]:focus,
 .form.push-note input[type=password]:focus,
-.form.push-note textarea:focus {
+.form.push-note textarea:focus,
+.dialogue.confirm input[type=text]:focus,
+.dialogue.confirm input[type=email]:focus,
+.dialogue.confirm input[type=password]:focus,
+.dialogue.confirm textarea:focus {
   outline-color: #7298a1;
   outline-offset: -2px;
   outline-style: auto;
@@ -169,7 +194,11 @@ body {
 .form.push-note input[type=text]:hover,
 .form.push-note input[type=email]:hover,
 .form.push-note input[type=password]:hover,
-.form.push-note textarea:hover {
+.form.push-note textarea:hover,
+.dialogue.confirm input[type=text]:hover,
+.dialogue.confirm input[type=email]:hover,
+.dialogue.confirm input[type=password]:hover,
+.dialogue.confirm textarea:hover {
   border: 1px solid #a1bec5;
 }
 .form.register input[type=text]:-webkit-autofill, .form.register input[type=text]:-webkit-autofill:hover, .form.register input[type=text]:-webkit-autofill:focus,
@@ -205,7 +234,19 @@ body {
 .form.push-note input[type=password]:-webkit-autofill:focus,
 .form.push-note textarea:-webkit-autofill,
 .form.push-note textarea:-webkit-autofill:hover,
-.form.push-note textarea:-webkit-autofill:focus {
+.form.push-note textarea:-webkit-autofill:focus,
+.dialogue.confirm input[type=text]:-webkit-autofill,
+.dialogue.confirm input[type=text]:-webkit-autofill:hover,
+.dialogue.confirm input[type=text]:-webkit-autofill:focus,
+.dialogue.confirm input[type=email]:-webkit-autofill,
+.dialogue.confirm input[type=email]:-webkit-autofill:hover,
+.dialogue.confirm input[type=email]:-webkit-autofill:focus,
+.dialogue.confirm input[type=password]:-webkit-autofill,
+.dialogue.confirm input[type=password]:-webkit-autofill:hover,
+.dialogue.confirm input[type=password]:-webkit-autofill:focus,
+.dialogue.confirm textarea:-webkit-autofill,
+.dialogue.confirm textarea:-webkit-autofill:hover,
+.dialogue.confirm textarea:-webkit-autofill:focus {
   color: inherit;
   border: 1px solid #a1bec5;
   -webkit-text-fill-color: inherit;
@@ -215,7 +256,8 @@ body {
 }
 .form.register button,
 .form.sign-in button,
-.form.push-note button {
+.form.push-note button,
+.dialogue.confirm button {
   border: 1px solid #a1bec5;
   cursor: pointer;
   font-size: 1.2rem;
@@ -224,10 +266,12 @@ body {
   color: #4e5f63;
   margin-bottom: 0.4rem;
   height: 2em;
+  min-width: 6rem;
 }
 .form.register button:hover,
 .form.sign-in button:hover,
-.form.push-note button:hover {
+.form.push-note button:hover,
+.dialogue.confirm button:hover {
   outline-color: #7298a1;
   outline-offset: -2px;
   outline-style: auto;
@@ -235,8 +279,85 @@ body {
 }
 .form.register button:focus,
 .form.sign-in button:focus,
-.form.push-note button:focus {
+.form.push-note button:focus,
+.dialogue.confirm button:focus {
   outline-color: #7298a1;
+  outline-offset: -2px;
+  outline-style: auto;
+  outline-width: 5px;
+}
+.form.register button.confirm,
+.form.sign-in button.confirm,
+.form.push-note button.confirm,
+.dialogue.confirm button.confirm {
+  background-color: #48b170;
+  color: #235637;
+  border-color: #327b4e;
+}
+.form.register button.confirm svg.icon,
+.form.sign-in button.confirm svg.icon,
+.form.push-note button.confirm svg.icon,
+.dialogue.confirm button.confirm svg.icon {
+  fill: #235637 !important;
+}
+.form.register button.confirm svg.icon .line,
+.form.sign-in button.confirm svg.icon .line,
+.form.push-note button.confirm svg.icon .line,
+.dialogue.confirm button.confirm svg.icon .line {
+  stroke: #235637 !important;
+}
+.form.register button.confirm:hover,
+.form.sign-in button.confirm:hover,
+.form.push-note button.confirm:hover,
+.dialogue.confirm button.confirm:hover {
+  outline-color: #2b6842;
+  outline-offset: -2px;
+  outline-style: auto;
+  outline-width: 5px;
+}
+.form.register button.confirm:focus,
+.form.sign-in button.confirm:focus,
+.form.push-note button.confirm:focus,
+.dialogue.confirm button.confirm:focus {
+  outline-color: #2b6842;
+  outline-offset: -2px;
+  outline-style: auto;
+  outline-width: 5px;
+}
+.form.register button.reject,
+.form.sign-in button.reject,
+.form.push-note button.reject,
+.dialogue.confirm button.reject {
+  background-color: #b15848;
+  color: #562b23;
+  border-color: #7b3d32;
+}
+.form.register button.reject svg.icon,
+.form.sign-in button.reject svg.icon,
+.form.push-note button.reject svg.icon,
+.dialogue.confirm button.reject svg.icon {
+  fill: #562b23 !important;
+}
+.form.register button.reject svg.icon .line,
+.form.sign-in button.reject svg.icon .line,
+.form.push-note button.reject svg.icon .line,
+.dialogue.confirm button.reject svg.icon .line {
+  stroke: #562b23 !important;
+}
+.form.register button.reject:hover,
+.form.sign-in button.reject:hover,
+.form.push-note button.reject:hover,
+.dialogue.confirm button.reject:hover {
+  outline-color: #68342b;
+  outline-offset: -2px;
+  outline-style: auto;
+  outline-width: 5px;
+}
+.form.register button.reject:focus,
+.form.sign-in button.reject:focus,
+.form.push-note button.reject:focus,
+.dialogue.confirm button.reject:focus {
+  outline-color: #68342b;
   outline-offset: -2px;
   outline-style: auto;
   outline-width: 5px;
@@ -262,6 +383,52 @@ body {
   outline-style: auto;
   outline-width: 5px;
 }
+.button.confirm {
+  background-color: #48b170;
+  color: #235637;
+  border-color: #327b4e;
+}
+.button.confirm svg.icon {
+  fill: #235637 !important;
+}
+.button.confirm svg.icon .line {
+  stroke: #235637 !important;
+}
+.button.confirm:hover {
+  outline-color: #2b6842;
+  outline-offset: -2px;
+  outline-style: auto;
+  outline-width: 5px;
+}
+.button.confirm:focus {
+  outline-color: #2b6842;
+  outline-offset: -2px;
+  outline-style: auto;
+  outline-width: 5px;
+}
+.button.reject {
+  background-color: #b15848;
+  color: #562b23;
+  border-color: #7b3d32;
+}
+.button.reject svg.icon {
+  fill: #562b23 !important;
+}
+.button.reject svg.icon .line {
+  stroke: #562b23 !important;
+}
+.button.reject:hover {
+  outline-color: #68342b;
+  outline-offset: -2px;
+  outline-style: auto;
+  outline-width: 5px;
+}
+.button.reject:focus {
+  outline-color: #68342b;
+  outline-offset: -2px;
+  outline-style: auto;
+  outline-width: 5px;
+}
 
 .icon {
   width: 2em;
@@ -275,6 +442,28 @@ body {
   stroke-width: 3;
   stroke: #4e5f63;
   fill: none;
+}
+
+.dialogue-align {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  overflow: visible;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+}
+.dialogue-align .dialogue.confirm {
+  width: 20em;
+  flex-shrink: 0;
+  box-shadow: 0 0 2em -0.5em #7298a1;
+}
+.dialogue-align .dialogue.confirm .text {
+  font-size: 1.17em;
+  margin-bottom: 0.8rem;
 }
 
 .js-elements {
