@@ -138,6 +138,9 @@ body {
   width: 100%;
   height: 100%;
 }
+.page-container .timeline .viewport {
+  padding: 50vh 0;
+}
 .page-container .timeline .axis-wrapper {
   height: 100%;
   width: 60vw;
@@ -177,12 +180,7 @@ body {
   display: flex;
   justify-content: flex-end;
   width: 60vw;
-}
-.page-container .timeline .note-wrapper:nth-child(2) {
-  margin-top: 40vh;
-}
-.page-container .timeline .note-wrapper:last-child {
-  margin-bottom: 50vh;
+  opacity: 0;
 }
 .page-container .timeline .note {
   position: relative;

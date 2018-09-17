@@ -13,6 +13,7 @@
 
 */
 
+// Async functions
 
 // Requests project data from server
 async function a_getProject(
@@ -29,9 +30,9 @@ async function a_getProject(
         return;
     }
 
-    let response = await ajax("ajax/rename-project.php", {
-        "accountid" : client.accountID,
-        "projectid" : projectID
+    let response = await ajax("ajax/get-project.php", {
+        "accountid" : 1,
+        "projectid" : 4
     });
 
     // Request successful?
@@ -416,6 +417,102 @@ async function a_getParticipants(
 
 
 
+// Functions
+
+function updateTimeline(notes) {
+
+    let $old = $(".timeline .note-wrapper");
+    for(let i = 0; i < $old.length; i++) {
+        setTimeout(function() {
+            effect.fadeOut($old.eq(i), function() {
+                effect.collapseHeight($old.eq(i), function() {
+                    $old.eq(i).remove();
+                });
+            });
+        }, i*50);
+    }
+
+    for(let i = 0; i < notes.length; i++) {
+        let $note = $(".js-elements .note-wrapper").clone(true);
+        let note = notes[i];
+
+
+        // Set its data
+        $note.find(".top .date").text(note.creationdate);
+        $note.find(".top .time").text(note.worktime);
+        $note.find(".top .delete").attr("noteid", note.noteid);
+       
+        $note.find(".head .title").text(note.title);
+        $note.find(".creator .initials span").text(note.forename.substring(0, 1)+note.surname.substring(0, 1));
+        $note.find(".creator .name").text(note.forename+" "+note.surname);
+        
+        $note.find(".expand .text:not(.irreg)").text(note.notetext);
+        $note.find(".expand .text.irreg").text(note.irregtext.length == 0 ? "Inget att notera": note.irregtext);
+
+        // Bind action listeners
+        $note.on("mouseenter", function() {
+            effect.fadeIn($(this).find(".top"));
+        });
+        $note.on("mouseleave", function() {
+            effect.fadeOut($(this).find(".top"));
+        });
+
+        $note.find(".head .title").on("click", function() {
+            let $expand = $note.find(".expand");
+            let $title = $note.find(".title");
+            if($expand.is(":hidden")) {
+                // Stores the initial width in the element
+                $title.attr("initial-width", $title.outerWidth(true));
+                $title.animate({
+                    "width" : "42rem"
+                }, {
+                    "easing" : $.bez([0.19, 0.83, 0.32, 0.96]),
+                    "duration" : 200,
+                });
+                // Delays the slide down animation with 100ms
+                setTimeout(function() {
+                    $expand.slideDown({
+                        "easing" : $.bez([0.19, 0.83, 0.32, 0.96]),
+                        "duration" : 200
+                    });
+                }, 100);
+            } else {
+                $expand.slideUp({
+                    "easing" : $.bez([0.19, 0.83, 0.32, 0.96]),
+                    "duration" : 200,
+                    "done" : function() {
+                        // When done with sliding up, restore the with of the element
+                        let width = $title.attr("initial-width");
+                        $title.animate({
+                            "width" : width+"px"
+                        }, {
+                            "easing" : $.bez([0.19, 0.83, 0.32, 0.96]),
+                            "duration" : 200
+                        });
+                    }
+                });
+                
+            }
+        });
+
+        $note.appendTo(".timeline .viewport");
+
+        setTimeout(function() {
+            effect.fadeIn($note);
+        }, i*50);
+    }
+}
+
+
+$(document).ready(function() {
+
+    a_getProject(4, function(response) {
+        updateTimeline(response.project.notes);
+    });
+});
+
+
+
 
 // Bind action listeners
 
@@ -424,7 +521,10 @@ async function a_getParticipants(
 $(".form.push-note button.submit").on("click", function() {
     a_pushNote(function(response) {
         $(".form.push-note [name]").val("");
-
+        let $form = $(".push-note-align");
+        effect.fadeOut($form, function() {
+            $form.removeClass("shown");
+        });
     }, function(response) {
         notifications.display(response.message);
     });
@@ -438,8 +538,7 @@ $(".form.push-note button.close").on("click", function() {
 $(".add-note").on("click", function() {
     let $form = $(".push-note-align");
     $form.addClass("shown");
-    effect.fadeIn($form, function() {
-    });
+    effect.fadeIn($form);
 });
 
 
@@ -534,53 +633,3 @@ $textarea.on("input", function () {
 
 
 
-
-$(".note").on("mouseenter", function() {
-    effect.fadeIn($(this).find(".top"));
-});
-$(".note").on("mouseleave", function() {
-    effect.fadeOut($(this).find(".top"));
-});
-
-$(".note .title").on("click", function() {
-    let $note = $(this).parent().parent();
-    let $expand = $note.find(".expand");
-    let $title = $note.find(".title");
-    if($expand.is(":hidden")) {
-        // Stores the initial width in the element
-        $title.attr("initial-width", $title.outerWidth(true));
-        $title.animate({
-            "width" : "42rem"
-        }, {
-            "easing" : $.bez([0.19, 0.83, 0.32, 0.96]),
-            "duration" : 200,
-        });
-        // Delays the slide down animation with 100ms
-        setTimeout(function() {
-            $expand.slideDown({
-                "easing" : $.bez([0.19, 0.83, 0.32, 0.96]),
-                "duration" : 200
-            });
-        }, 100);
-    } else {
-        $expand.slideUp({
-            "easing" : $.bez([0.19, 0.83, 0.32, 0.96]),
-            "duration" : 200,
-            "done" : function() {
-                // When done with sliding up, restore the with of the element
-                let width = $title.attr("initial-width");
-                $title.animate({
-                    "width" : width+"px"
-                }, {
-                    "easing" : $.bez([0.19, 0.83, 0.32, 0.96]),
-                    "duration" : 200
-                });
-            }
-        });
-        
-    }
-});
-
-$(".participants-icon").on("click", function(){
-    $(".right-panel .participants").toggleClass("shown");
-});
