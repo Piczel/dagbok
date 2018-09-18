@@ -53,6 +53,24 @@ $bezier: cubic-bezier(0.19, 0.83, 0.32, 0.96);
     }
 }
 
+@mixin trash-can() {
+    width: 2em;
+    cursor: pointer;
+    
+    transition: 
+        opacity 300ms $bezier;
+    
+    .lid {
+        transition: transform 300ms $bezier;
+    }
+
+    &:hover {
+        .lid {
+            transform: translateY(-0.5em);
+        }
+    }
+}
+
 
 
 body {
@@ -248,6 +266,16 @@ body {
 .dropdown {
     flex-shrink: 0;
     position: relative;
+
+    &.expanded {
+        .head {
+            background-color: $brighter;
+            .icon {
+                transform: rotate(180deg);
+            }
+        }
+    }
+
     .head {
         display: flex;
         padding: 0.8rem;
@@ -265,6 +293,7 @@ body {
         }
         .icon {
             font-size: 0.6em;
+            transition: transform 300ms $bezier;
         }
         .title {
             font-size: 1.17em;
@@ -276,15 +305,25 @@ body {
         }
     }
     .expand {
-        overflow: hidden;
         display: none;
+        overflow: auto;
         position: absolute;
         top: 100%;
+        max-height: 16em;
+        
+        .simplebar-track {
+            z-index: 5;
+        }
+        .simplebar-scroll-content {
+            z-index: 4;
+        }
 
         .new-project {
             display: flex;
             margin-top: 0.4rem;
-            
+            padding: 3px;
+            padding-right: 0.8rem;
+
             input {
                 display: block;
                 border: none;
@@ -327,12 +366,32 @@ body {
             }
         }
         .projects {
-            max-height: 25vh;
+            padding: 3px;
+            padding-right: 0.8rem;
+
             .project {
                 @include button();
+                background-color: $brightest;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                margin-top: 0.2rem;
+
+                &:hover {
+                    .delete {
+                        opacity: 1;
+                    }
+                }
 
                 &.disabled {
                     pointer-events: none;
+                }
+
+                .delete {
+                    @include trash-can();
+                    font-size: 0.6em;
+                    opacity: 0;
+                    transition: opacity 300ms $bezier;
                 }
             }
         }

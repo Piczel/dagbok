@@ -54,8 +54,6 @@
     <script src="js/common.js"></script>
 
     <script>
-
-
         // Stores client data necessary for asynchronous request to the server
         let client = {
             "accountID" : <?php echo $accountid; ?>,
@@ -83,7 +81,7 @@
                     </svg>
                     <div class="title">- Välj projekt -</div>
                 </div>
-                <div class="expand">
+                <div class="expand" data-simplebar>
                     <div class="form new-project">
                         <input type="text" name="projectname" placeholder="Nytt projekt">
                         <button class="submit button confirm">
@@ -92,14 +90,32 @@
                             </svg>
                         </button>
                     </div>
-                    <div class="projects" data-simplebar>
+                    <div class="projects">
                         <div class="project disabled">Du har inga projekt än</div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
+
+    <div class="add-note">
+        <svg class="icon" viewBox="0 0 100 100">
+            <path class="line" d="M 0 20 L 40 20 M 20 0 L 20 40"/>
+            <path class="line" d="M 10 14 L 10 10 L 14 10 M 26 10 L 80 10 L 80 90 L 10 90 L 10 26"/>
+        </svg>
+        <svg class="icon glow" viewBox="0 0 100 100">
+            <path class="line" d="M 0 20 L 40 20 M 20 0 L 20 40"/>
+            <path class="line" d="M 10 14 L 10 10 L 14 10 M 26 10 L 80 10 L 80 90 L 10 90 L 10 26"/>
+        </svg>
+        <svg class="icon glow" viewBox="0 0 100 100">
+            <path class="line" d="M 0 20 L 40 20 M 20 0 L 20 40"/>
+            <path class="line" d="M 10 14 L 10 10 L 14 10 M 26 10 L 80 10 L 80 90 L 10 90 L 10 26"/>
+        </svg>
+    </div>
+
+    <div class="project-summary">
         <div class="project-name form rename-project">
-            <input type="text" name="projectname" placeholder="Ange projektnamn" disabled>
+            <input type="text" name="projectname" disabled>
 
             <div class="buttons-align">
 
@@ -123,21 +139,6 @@
 
             </div>
         </div>
-    </div>
-
-    <div class="add-note">
-        <svg class="icon" viewBox="0 0 100 100">
-            <path class="line" d="M 0 20 L 40 20 M 20 0 L 20 40"/>
-            <path class="line" d="M 10 14 L 10 10 L 14 10 M 26 10 L 80 10 L 80 90 L 10 90 L 10 26"/>
-        </svg>
-        <svg class="icon glow" viewBox="0 0 100 100">
-            <path class="line" d="M 0 20 L 40 20 M 20 0 L 20 40"/>
-            <path class="line" d="M 10 14 L 10 10 L 14 10 M 26 10 L 80 10 L 80 90 L 10 90 L 10 26"/>
-        </svg>
-        <svg class="icon glow" viewBox="0 0 100 100">
-            <path class="line" d="M 0 20 L 40 20 M 20 0 L 20 40"/>
-            <path class="line" d="M 10 14 L 10 10 L 14 10 M 26 10 L 80 10 L 80 90 L 10 90 L 10 26"/>
-        </svg>
     </div>
 
     <div class="push-note-align">
@@ -241,6 +242,19 @@
     <div class="participants-icon"><span>M<!--Members--></span></div>
     <div class="js-elements">
 
+        <div class="project">
+            <div class="title"></div>
+            <div class="delete" projectid="">
+                <svg class="icon" viewBox="0 0 100 100">
+                    <path class="line" d="M 20 100 L 10 38 L 5 38 L 5 28 L 95 28 L 95 38 L 90 38 L 80 100 Z"/>
+                    <path class="line" d="M 33 86 L 27 44"/>
+                    <path class="line" d="M 50 86 L 50 44"/>
+                    <path class="line" d="M 67 86 L 73 44"/>
+                    <path class="line lid" d="M 5 18 L 42 18 L 42 13 L 58 13 L 58 18 L 95 18"/>
+                </svg>
+            </div>
+        </div>
+        
         <div class="member">
             <div class="member-icon"></div>
             <p class="full-name"></p>
@@ -273,7 +287,6 @@
                                 <path class="line" d="M 50 86 L 50 44"/>
                                 <path class="line" d="M 67 86 L 73 44"/>
                                 <path class="line lid" d="M 5 18 L 42 18 L 42 13 L 58 13 L 58 18 L 95 18"/>
-
                             </svg>
                         </div>
                     </div>

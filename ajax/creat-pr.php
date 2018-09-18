@@ -24,19 +24,34 @@
 
     //Inserts data into an array
     $projectname = $input["projectname"];
+    $accountid = $input["accountid"];
 
     $sql = "INSERT INTO project (`name`) VALUES ('$projectname')";
 
     if($connection->multi_query($sql) === true){
-       //Query succeded
-        $response = [
-            "status" => true,
-            "message" => "Projekt skapat",
-            "project" => [
-                "projectid" => $connection->insert_id,
-                "projectname" => $projectname
-            ]
-        ];
+
+        $projectid = $connection->insert_id;
+
+        $sql = "INSERT INTO participation (foraccountid, forprojectid) VALUES ($accountid, $projectid)";
+        if($connection->multi_query($sql) === true){
+            //Query succeded
+            $response = [
+                "status" => true,
+                "message" => "Projekt skapat",
+                "project" => [
+                    "projectid" => $projectid,
+                    "projectname" => $projectname
+                ]
+            ];
+
+        } else {
+            //Query failed
+            $response = [
+                "status" => false,
+                "message" => "Kunde inte skapa projekt"
+            ];
+        }
+
     }else{
         //Query failed
         $response = [
