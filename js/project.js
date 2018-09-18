@@ -724,3 +724,23 @@ $.datepicker.setDefaults($.datepicker.regional["sv"]);
 $(".form.push-note input[name=date]").datetimepicker();
 
 
+
+let participantsShown = false;
+$(".participants-icon").on("click", function(){
+    if(participantsShown){
+        $(".right-panel .participants").removeClass("shown");
+        participantsShown = false;        
+    } else {
+        updateParticipantsList();
+        $(".right-panel .participants").addClass("shown");
+        participantsShown = true;
+    }
+});
+
+
+// Get all participants and create list
+function updateParticipantsList(){
+    console.log("update");
+}
+
+
