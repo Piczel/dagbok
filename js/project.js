@@ -439,6 +439,7 @@ function setProject(project) {
     
     setTimeline(project.notes);
     $(".project-name input").val(project.projectname);
+    $(".select-project .head .title").text(project.projectname.length > 0 ? project.projectname : "- Välj projekt -");
 
     function setTimeline(notes) {
 
@@ -553,20 +554,85 @@ function setProject(project) {
     }
 }
 
+function expandAllProjects() {
+    $(".dropdown.select-project").addClass("expanded");
+    $(".dropdown.select-project .expand").slideDown({
+        "easing" : $.bez([0.19, 0.83, 0.32, 0.96]),
+        "duration" : 200
+    });
+}
+function contractAllProjects() {
+    $(".dropdown.select-project").removeClass("expanded");
+    $(".dropdown.select-project .expand").slideUp({
+        "easing" : $.bez([0.19, 0.83, 0.32, 0.96]),
+        "duration" : 200
+    });
+}
+function updateProjectList(projects) {
+    if(projects.length < 1) return;
+
+    
+    $(".select-project .projects").empty();
+    for(let i = 0; i < projects.length; i++) {
+        $(".select-project .projects").append(
+            createProjectPanel(projects[i].projectid, projects[i].name)
+        );
+    }
+}
+function createProjectPanel(projectID, projectName) {
+    let $project = $(".js-elements .project").clone(true);
+    $project.find(".title").text(projectName);
+    $project.find(".delete").on("click", function() {
+        // Trigger dialogue
+        dialogue.confirm("Vill du verkligen ta bort \""+projectName+"\"?", function() {
+            // Delete project
+            // Passes projectID stored in element attribute
+            a_deleteProject(projectID, function(response) {
+                // Unsets current project
+                changeProject(0);
+                effect.collapseHeight($project, function() {
+                    $project.remove();
+                });
+            }, function(response) {
+                notifications.display(response.message);
+            });
+        });
+    });
+    $project.on("click", function() {
+        changeProject(projectID);
+        contractAllProjects();
+    });
+
+    return $project;
+}
+
+
+// Initiates the asyncrounous request and sets the client.projectID
+function changeProject(projectID) {
+    client.projectID = projectID;
+
+    if(client.projectID == 0) {
+        setProject({
+            "projectname" : "",
+            "notes" : []
+        });
+    } else {
+        a_getProject(client.projectID, function(response) {
+            setProject(response.project);
+        }, function(response) {
+            notifications.display(response.message);
+        });
+    }
+
+}
 
 
 
 
 // Bind action listeners
 
-
 $(document).ready(function() {
-
-    if(client.projectID != 0) {
-        a_getProject(client.projectID, function(response) {
-            setProject(response.project);
-        });
-    }
+    changeProject(client.projectID);
 
 });
 
@@ -616,34 +682,26 @@ $(".remove-from-project").on("click", function() {
     });
 });
 
-// Get project
-// Passes projectID stored in attribute
-$(".get-project").on("click", function() {
-    a_getProject($(this).attr("projectid"), function(response) {
-        setProject(response.project);
-    }, function(response) {
-        notifications.display(response.message);
-    });
-});
 
 // Add new project
 $(".form.new-project button.submit").on("click", function() {
     a_createProject(function(response) {
-
-    }, function(response) {
-        notifications.display(response.message);
-    });
-});
-
-// Delete project
-// Passes projectID stored in element attribute
-$(".delete-project").on("click", function() {
-    a_deleteProject($(this).attr("projectid"), function(response) {
+        changeProject(response.project.projectid);
+        $(".form.new-project input").val("");
         
+        let $panel = createProjectPanel(response.project.projectid, response.project.projectname);
+        $panel.css("display", "none");
+        $(".select-project .projects").append($panel);
+        $panel.slideDown({
+            "easing" : $.bez([0.19, 0.83, 0.32, 0.96]),
+            "duration" : 200
+        });
     }, function(response) {
         notifications.display(response.message);
     });
 });
+
+
 
 
 
@@ -654,6 +712,7 @@ $(".form.rename-project button.submit").on("click", function() {
         previousName = $(".form.rename-project input[name=projectname]").val();
         $(".form.rename-project").removeClass("edit");
         $(".form.rename-project input[name=projectname]").prop("disabled", true);
+        $(".select-project .title").text($(".form.rename-project input[name=projectname]").val());
     }, function(response) {
         notifications.display(response.message);
         $(".form.rename-project button.reject").trigger("click");
@@ -680,33 +739,20 @@ $(".form.rename-project button.reject").on("click", function() {
 // Fetch all projects
 $(".dropdown.select-project .head").on("click", function() {
 
-    let $expand = $(".dropdown.select-project .expand"); 
+    let $expand = $(".dropdown.select-project .expand");
     if($expand.is(":hidden")) {
-        
-        $expand.slideDown({
-            "easing" : $.bez([0.19, 0.83, 0.32, 0.96]),
-            "duration" : 200,
-            "done" : function() {
-                
-            }
+        a_getAllProjects(function(response) {
+            updateProjectList(response.projects);
+            expandAllProjects();
+        }, function(response) {
+            notifications.display(response.message);
+            expandAllProjects();
         });
     } else {
-
-        $expand.slideUp({
-            "easing" : $.bez([0.19, 0.83, 0.32, 0.96]),
-            "duration" : 200,
-            "done" : function() {
-                
-            }
-        });
-        
+        contractAllProjects();
     }
-    a_getAllProjects(function(response) {
-        
-    }, function(response) {
-        notifications.display(response.message);
-    });
 });
+
 
 
 // Make all textareas autosize
