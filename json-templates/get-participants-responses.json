@@ -7,13 +7,13 @@
             "accountid" : 1,
             "email" : "eckerrot.samuel@gmail.com",
             "forename" : "Samuel",
-            "eckerrot" : "Eckerrot"
+            "surname" : "Eckerrot"
         },
         {
             "accountid" : 1,
             "email" : "eckerrot.samuel@gmail.com",
             "forename" : "Samuel",
-            "eckerrot" : "Eckerrot"
+            "surname" : "Eckerrot"
         }
         // ...
     ]

@@ -489,7 +489,7 @@ body {
 
 
     .right-panel {
-        height: 100%;
+        height: 90%;
         padding-top: 4em;
         padding-bottom:4em;
         flex-shrink: 0;
@@ -499,48 +499,107 @@ body {
             position:relative;
             height:100%;
             width:0em;
-            background-color:white;
+            background-color:$brightest;
             transition:width 500ms $bezier;
             border:1px solid $bright;
         }
         .participants.shown{
-            width:12em;
+            width:22em;
+        }
+        .member-icon {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5em;
+            font-family: "Unlock", cursive;
+            color: $brightest;
+            background-color: $base;
+            border: 1px solid $dark;
+            border-radius: 50%;
+            width: 1.5em;
+            height: 1.5em;
+            cursor: default;
+            margin-left:0.2em;
         }
         .member{
+            padding: 0 0.8rem;
+            align-items:center;
+            display:flex;
             position:relative;
             width:100%;
             height:3em;
             border-bottom:solid 1px $bright;
+            justify-content: space-between;
+            .remove-from-project{
+                @include trash-can();
+                font-size:0.8em;
+                margin-bottom:0.6em;
+                margin-right:0.4em;
+            }
         }
         p{
-            position:absolute;
-            left:3.5em;
-            top:0em;
             white-space: nowrap;
+            font-size: 1.17em;
         }
-        .new-member{
+        h1{
+            position:absolute;
+            width:100%;
+            bottom:2.4em;
+            color:inherit;
+            padding-left:0.2em;
+            white-space: nowrap;
+            border-top:1px solid $bright;
+            margin: 0;
+            padding-top: 1.6rem;
+            font: {
+                size:1.2rem;
+                family:inherit;
+            };
+        }
+        .form.invite-account{
             position:absolute;
             width:100%;
             bottom:0;
-            height:5.5em;
-            background-color: $bright;
-        }
-        .text{
-            position:absolute;;
-            top:0.4em;
-            left:0.2em;
-            width:7.5em;
-            font-size: 1.5em;
-            font-family: "Unlock", cursive;
-        }
-        .submit{
-            position:absolute;
-            bottom:0.4em;
-            left:0.2em;
-            width:7.5em;
-            font-size: 1.5em;
-            font-family: "Unlock", cursive;
-            color:$brightest;
+            display:flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 2;
+            padding-bottom: 0.2rem;
+            .text{
+                display: block;
+                border: none;
+                border: 1px solid $brighter;
+                color: $dark;
+                width:100%;
+                margin-left:0.2em;
+                margin-bottom: 0;
+                z-index: 2;
+                font: {
+                    size: 1.2rem;
+                    family: inherit; 
+                }
+                padding: 0.6rem 0.8rem;
+                background-color: $brighter;
+                resize: none;
+                
+                height: 2em;
+            
+                &:focus {
+                    @include outline($base);
+                }
+                &:hover {
+                    border: 1px solid $bright;
+                }
+         
+            }
+            .submit{
+                flex-shrink: 0;
+                z-index: 2;
+                font-size: 0.5em;
+                padding:0.6rem 0.6rem;
+                margin-right:0.2rem;
+                margin-left: 0.2rem;
+            }
         }
     }
 }
@@ -560,39 +619,6 @@ body {
     position:absolute;
     right:0.4em;
     top:0.4em;
-    z-index:3;
+    z-index:1;
 }
-.projects-icon {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 2em;
-    font-family: "Unlock", cursive;
-    color: $brightest;
-    background-color: $base;
-    border: 1px solid $dark;
-    width: 3em;
-    height: 1.5em;
-    cursor: default;
-    position:absolute;
-    right:2.3em;
-    top:0.4em;
-    z-index:3;
-}
-.member-icon {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.5em;
-    font-family: "Unlock", cursive;
-    color: $brightest;
-    background-color: $base;
-    border: 1px solid $dark;
-    border-radius: 50%;
-    width: 1.5em;
-    height: 1.5em;
-    cursor: default;
-    position:absolute;
-    left:0.2em;
-    top:0.2em;
-}
+
