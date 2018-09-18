@@ -221,12 +221,16 @@
         <div class="right-panel">
             <div class="participants" data-simplebar>
                 <div class="viewport">
-
-                </div>
-                
-                <div class="new-member">                              
-                <input class="text" type="text" name="account" value="">
-                <input class="submit" type="submit" value="Lägg till">
+                    </div>                     
+            
+            <div class="form invite-account">
+                <h1>Bjud in konto...</h1>
+                <input class="text" type="text" name="email" placeholder="Ange epost">
+                <button class="submit button confirm">
+                    <svg class="icon" viewBox="0 0 100 100">
+                        <circle class="line" cx="50" cy="50" r="48" />
+                    </svg>
+                </button>
                 </div>
             </div>
         </div>
@@ -296,10 +300,6 @@
     <br>
     
 
-    <div class="form invite-account">
-        <input type="text" name="email">
-        <button class="submit">Bjud in</button>
-    </div>
 
 
     <div class="form new-project">

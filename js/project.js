@@ -600,7 +600,7 @@ $(".add-note").on("click", function() {
 // Invite account
 $(".form.invite-account button.submit").on("click", function() {
     a_inviteAccount(function(response) {
-
+        updateParticipantsList();   
     }, function(response) {
         notifications.display(response.message);
     });
