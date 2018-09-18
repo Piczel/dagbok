@@ -33,9 +33,15 @@
     <link href="https://fonts.googleapis.com/css?family=Unlock" rel="stylesheet">
     <link rel="stylesheet" href="css/project.css">
     <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/jquery-ui.min.css">
+    <link rel="stylesheet" href="css/jquery-ui.theme.min.css">
+    <link rel="stylesheet" href="css/jquery-ui-timepicker-addon.css">
 
     <script src="js/jquery-3.3.1.min.js"></script>
 
+    <script src="js/jquery-ui.min.js"></script>
+    <script src="js/datepicker-sv.js"></script>
+    <script src="js/jquery-ui-timepicker-addon.js"></script>
     <script src="js/jquery-textrange.js"></script>
     <script src="js/jquery.bez.min.js"></script>
 
@@ -70,17 +76,53 @@
                 </svg>
             </a>
             <div class="main">Dagboken</div>
-        </div>
-        <!--
-        <div class="tools">
-            <div class="tool button new-note">
-                <svg class="icon" viewBox="0 0 100 100">
-                    <path class="line" d="M 0 49 L 100 49"/>
-                    <path class="line" d="M 49 0 L 49 100"/>
-                </svg>
+            <div class="select-project dropdown">
+                <div class="head">
+                    <svg class="icon" viewBox="0 0 100 100">
+                        <path d="M 0 20 L 100 20 L 50 80 Z"/>
+                    </svg>
+                    <div class="title">- Välj projekt -</div>
+                </div>
+                <div class="expand">
+                    <div class="form new-project">
+                        <input type="text" name="projectname" placeholder="Nytt projekt">
+                        <button class="submit button confirm">
+                            <svg class="icon" viewBox="0 0 100 100">
+                                <circle class="line" cx="50" cy="50" r="48" />
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="projects" data-simplebar>
+                        <div class="project disabled">Du har inga projekt än</div>
+                    </div>
+                </div>
             </div>
-            <div class="tool button participants">Deltagare</div>
-        </div> -->
+        </div>
+        <div class="project-name form rename-project">
+            <input type="text" name="projectname" placeholder="Ange projektnamn" disabled>
+
+            <div class="buttons-align">
+
+                <button class="button edit">
+                    <svg class="icon" viewBox="0 0 100 100">
+                        <path d="M 2 98 L 6 76 L 24 94 Z"/>
+                        <path class="line" d="M 16 66 L 76 6 L 94 24 L 34 84"/>
+                    </svg>
+                </button>
+                <button class="button submit confirm" projectid="1">
+                    <svg class="icon" viewBox="0 0 100 100">
+                        <circle class="line" cx="50" cy="50" r="48" />
+                    </svg>
+                </button>
+                <button class="button reject">
+                    <svg class="icon" viewBox="0 0 100 100">
+                        <path class="line" d="M 0 0 L 100 100"/>
+                        <path class="line" d="M 0 100 L 100 0"/>
+                    </svg>
+                </button>
+
+            </div>
+        </div>
     </div>
 
     <div class="add-note">
@@ -172,12 +214,8 @@
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>-->
-            
-            
-        
-            
+                </div>-->
+            </div>
             
         </div>
     </div>
@@ -204,15 +242,28 @@
  
     <div class="participants-icon"><span>M<!--Members--></span></div>
     <div class="js-elements">
+
         <div class="note-wrapper">
             <div class="note">
                 <div class="top">
                     <div class="date"></div>
                     <div class="time"></div>
-                    <div class="delete" noteid=""></div>
                 </div>
                 <div class="head">
-                    <h2 class="title"></h2>
+                    <h2 class="title">
+                    </h2>
+                    <div class="delete-align">
+                        <div class="delete" noteid="">
+                            <svg class="icon" viewBox="0 0 100 100">
+                                <path class="line" d="M 20 100 L 10 38 L 5 38 L 5 28 L 95 28 L 95 38 L 90 38 L 80 100 Z"/>
+                                <path class="line" d="M 33 86 L 27 44"/>
+                                <path class="line" d="M 50 86 L 50 44"/>
+                                <path class="line" d="M 67 86 L 73 44"/>
+                                <path class="line lid" d="M 5 18 L 42 18 L 42 13 L 58 13 L 58 18 L 95 18"/>
+
+                            </svg>
+                        </div>
+                    </div>
                     <div class="creator-align"> 
                         <div class="creator">
                             <div class="initials"><span></span></div>
@@ -231,14 +282,7 @@
     </div>
 
 <!--
-    <div class="form push-note">
-        <input type="text" name="date">
-        <input type="text" name="title">
-        <input type="text" name="work-time">
-        <textarea name="note-text"></textarea>
-        <textarea name="irreg-text"></textarea>
-        <button class="submit">Skicka</button>
-    </div>
+    
 
     <br>
     
@@ -248,9 +292,6 @@
         <button class="submit">Bjud in</button>
     </div>
 
-
-    <div class="delete-note" noteid="1"></div>
-    <div class="remove-from-project" accountid="1"></div>
 
     <div class="form new-project">
         <input type="text" name="projectname">

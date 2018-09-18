@@ -22,23 +22,45 @@ $bezier: cubic-bezier(0.19, 0.83, 0.32, 0.96);
     }
 }
 
+@mixin trash-can() {
+    width: 2em;
+    cursor: pointer;
+    margin-right: 0.8rem;
+    
+    transition: 
+        opacity 300ms $bezier;
+    
+    .lid {
+        transition: transform 300ms $bezier;
+    }
+
+   
+    &:hover {
+        .lid {
+            transform: translateY(-0.5em);
+        }
+    }
+}
+
 body {
     height: 100vh;
     overflow:hidden;
 }
 
 .top-bar {
-    width: 100%;
+    width: 60vw;
     position: absolute;
     display: flex;
     align-items: flex-start;
-    padding: 0.4em;
-    flex-shrink: 0;
+    justify-content: space-between;
     z-index: 2;
     
     .nav {
         display: flex;
+        padding: 0.4em;
         justify-content: flex-start;
+        width: 100%;
+        flex-grow: 1;
 
         > *:not(:first-child) {
             margin-left: 0.8rem;
@@ -55,18 +77,86 @@ body {
                 weight: 900;
             }
         }
-    }
-    .tools {
-        display: flex;
-        align-items: center;
-        justify-content: flex-start;
         
-        .tool {
-            margin: 0.4em;
-            padding: 0.4em;
+    }
+    .project-name {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        padding-top: 0.4rem;
+
+        input {
+            font: {
+                size: 3.8em;
+                weight: 600;
+                font-family: inherit;
+            };
+            text-align: right;
+            background-color: unset;
+            border: none;
+            padding: 0.4rem 0;
+            color: $bright;
+            width: 44rem;
+            padding-right: 0.8rem;
+            margin-right: -0.8rem;
+            transition: all 300ms $bezier;
             
-            .icon {
-                font-size: 0.6em;
+            &:focus {
+                outline: none;
+            }
+            
+            &::placeholder {
+                color: $brighter;
+            }
+        }
+        
+        .buttons-align {
+            display: flex;
+            position: relative;
+            left: 3.2rem;
+            width: 0;
+            flex-grow: 0;
+            transition: opacity 300ms $bezier;
+            opacity: 0;
+            
+            .button {
+                font-size: 0.6rem;
+                transition: transform 300ms $bezier;
+            }
+            .confirm,
+            .reject {
+                pointer-events: none;
+                transform: scale(0);
+            }
+            
+            .edit {
+                position: absolute;
+            }
+            .reject {
+                margin-left: 0.4rem;
+            }
+        }
+        
+        &.edit {
+            input {
+                background-color: $brighter;
+                color: $base;
+            }
+            .confirm,
+            .reject {
+                transform: scale(1);
+                pointer-events: all;
+            }
+            .edit {
+                transform: scale(0);
+                pointer-events: none;
+            }
+        }
+        
+        &.edit,
+        &:hover {
+            .buttons-align {
+                opacity: 1;
             }
         }
     }
@@ -187,6 +277,7 @@ body {
         
         .viewport {
             padding: 50vh 0;
+            position: relative;
         }
 
         .axis-wrapper {
@@ -233,7 +324,9 @@ body {
             justify-content: flex-end;
             width: 60vw;
             opacity: 0;
+            position: relative;
             
+            z-index: 20;
         }
         .note {
             position: relative;
@@ -261,11 +354,6 @@ body {
                     color: rgb(11, 32, 28);
                     font-weight: 500;
                 }
-                
-                .delete {
-                    position: absolute;
-                    
-                }
             }
             .head {
                 display: flex;
@@ -277,17 +365,39 @@ body {
                     background-color: $brightest;
                     max-width: 100%;
                     min-width: 9em;
-                    
                     margin: 0;
                     padding: 0.8rem 1.6rem;
+                    white-space: nowrap;
+                    flex-shrink: 0;
                     font: {
                         weight: 400;
                         size: 1.6em;
                     }
                     cursor: pointer;
-                    
+                    flex-shrink: 1;
+
                     &:hover {
                         @include outline($base);
+                    }
+                }
+
+                .delete-align {
+                    display: flex;
+                    justify-content: flex-end;
+                    align-items: center;
+                    width: 0;
+                    height: 0;
+                    overflow: visible;
+
+                }
+                .delete {
+                    @include trash-can();
+                    pointer-events: none;
+                    opacity: 0;
+
+                    &.shown {
+                        opacity: 1;
+                        pointer-events: all;
                     }
                 }
 

@@ -1,6 +1,9 @@
 let notifications = {
     display : displayNotification
 };
+let dialogue = {
+    confirm : displayDialogue
+};
 let effect = {
     fadeIn : fadeIn,
     fadeOut : fadeOut,
@@ -43,6 +46,56 @@ function displayNotification(text, done = function(){}) {
             done();
         });
     }, 4000);
+}
+
+
+// Displays a confirmation dialogue
+function displayDialogue(
+    text,
+    confirm = function(){},
+    reject = function(){}
+) {
+    let $prev = $(".dialogue-align");
+    effect.fadeOut($prev, function() {
+        $prev.remove();
+    });
+    
+    let $align = $("<div></div>", {"class" : "dialogue-align"});
+    let $dialogue = $("<div></div>", {
+        "class" : "dialogue confirm"
+    });
+
+    $dialogue.append(
+        $("<div></div>", {"class" : "group text"}).text(text),
+        $("<div></div>", {"class" : "group center"}).append(
+            $("<button></button>", {
+                "class" : "confirm",
+                on : {
+                    click : function() {
+                        effect.fadeOut($align, function() {
+                            $align.remove();
+                        });
+                        confirm();
+                    }
+                }
+            }).text("Ja"),
+            $("<button></button>", {
+                "class" : "reject",
+                on : {
+                    click : function() {
+                        effect.fadeOut($align, function() {
+                            $align.remove();
+                        });
+                        reject();
+                    }
+                }
+            }).text("Avbryt")
+        )
+    );
+
+    
+    $align.append($dialogue).appendTo("body");
+    effect.fadeIn($align);
 }
 
 // Fade out effect

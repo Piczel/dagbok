@@ -5,7 +5,7 @@ $base: #7298a1;
 $dark: #4e5f63;
 
 $confirm: #48b170;
-$decline: #b15848;
+$reject: #b15848;
 
 $bezier: cubic-bezier(0.19, 0.83, 0.32, 0.96);
 
@@ -34,6 +34,25 @@ $bezier: cubic-bezier(0.19, 0.83, 0.32, 0.96);
     }
 }
 
+@mixin button-color($color) {
+    background-color: $color;
+    color: darken($color: $color, $amount: 25%);
+    border-color: darken($color: $color, $amount: 15%);
+    
+    svg.icon {
+        fill: darken($color: $color, $amount: 25%) !important;
+        .line {
+            stroke: darken($color: $color, $amount: 25%) !important;
+        }
+    }
+    &:hover {
+        @include outline(darken($color: $color, $amount: 20%)); 
+    }
+    &:focus {
+        @include outline(darken($color: $color, $amount: 20%));
+    }
+}
+
 
 
 body {
@@ -50,6 +69,11 @@ body {
 }
 * {
     box-sizing: border-box;
+}
+
+::selection { 
+    color: $brighter;
+    background-color: $dark;
 }
 
 
@@ -107,7 +131,8 @@ body {
 
 .form.register,
 .form.sign-in,
-.form.push-note  {
+.form.push-note,
+.dialogue.confirm  {
 
     border: 1px solid $bright;
     padding: 1.6rem;
@@ -123,6 +148,7 @@ body {
         
         > *:not(:first-child) {
             margin-left: 0.8rem;
+            width: 45%;
         }
     }
     .center {
@@ -183,11 +209,26 @@ body {
         @include button();
         margin-bottom: 0.4rem;
         height: 2em;
+        min-width: 6rem;
+
+        &.confirm {
+            @include button-color($confirm);
+        }
+        &.reject {
+            @include button-color($reject);
+        }
     }
 }
 
 .button {
     @include button();
+
+    &.confirm {
+        @include button-color($confirm);
+    }
+    &.reject {
+        @include button-color($reject);
+    }
 }
 .icon {
     width: 2em;
@@ -204,6 +245,125 @@ body {
     }
 }
 
+.dropdown {
+    flex-shrink: 0;
+    position: relative;
+    .head {
+        display: flex;
+        padding: 0.8rem;
+        cursor: pointer;
+        background-color: $brightest;
+        border: 1px solid $bright;
+        align-items: center;
+        height: 3.2rem;
+
+        &:hover {
+            @include outline($base);
+        }
+        &:focus {
+            @include outline($base);
+        }
+        .icon {
+            font-size: 0.6em;
+        }
+        .title {
+            font-size: 1.17em;
+            padding: 0 0.4rem;
+            width: 14rem;
+            text-align: center;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+    }
+    .expand {
+        overflow: hidden;
+        display: none;
+        position: absolute;
+        top: 100%;
+
+        .new-project {
+            display: flex;
+            margin-top: 0.4rem;
+            
+            input {
+                display: block;
+                border: none;
+                border: 1px solid $brighter;
+                color: inherit;
+                font: {
+                    size: 1.2rem;
+                    family: inherit; 
+                }
+                padding: 0.6rem 0.8rem;
+                background-color: $brighter;
+                margin-bottom: 0.4rem;
+                width: 100%;
+                resize: none;
+                height: 2em;
+                
+                &:focus {
+                    @include outline($base);
+                }
+                &:hover {
+                    border: 1px solid $bright;
+                }
+                &::placeholder {
+                    color: $base;
+                }
+            }
+            .confirm {
+                width: 2.4rem;
+                height: 2.4rem;
+                display: flex !important;
+                align-items: center;
+                justify-content: center;
+                padding: 0;
+                margin-left: 0.4rem;
+
+                svg.icon {
+                    flex-shrink: 0;
+                    font-size: 0.4em;
+                }
+            }
+        }
+        .projects {
+            max-height: 25vh;
+            .project {
+                @include button();
+
+                &.disabled {
+                    pointer-events: none;
+                }
+            }
+        }
+    }
+}
+
+.dialogue-align {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    overflow: visible;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    opacity: 0;
+
+    
+    .dialogue.confirm {
+        width: 20em;
+        flex-shrink: 0;
+        box-shadow: 0 0 2em -0.5em $base;
+        
+        .text {
+            font-size: 1.17em;
+            margin-bottom: 0.8rem;
+        }
+    }
+}
 
 .js-elements {
     display: none;

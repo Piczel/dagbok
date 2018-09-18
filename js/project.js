@@ -13,6 +13,7 @@
 
 */
 
+
 // Async functions
 
 // Requests project data from server
@@ -320,7 +321,6 @@ async function a_deleteProject(
 
 // Requests server to rename project
 async function a_renameProject(
-    projectID,
     resolved = function(){},
     rejected = function(){}
 ) {
@@ -329,6 +329,14 @@ async function a_renameProject(
         rejected({
             "status" : false,
             "message" : "Inte inloggad"
+        });
+        return;
+    }
+    // If a project isn't selected, return
+    if(client.projectID == 0) {
+        rejected({
+            "status" : false,
+            "message" : "Välj ett projekt, eller skapa ett nytt"
         });
         return;
     }
@@ -346,7 +354,7 @@ async function a_renameProject(
     
     let response = await ajax("ajax/rename-project.php", {
         "accountid" : client.accountID,
-        "projectid" : projectID,
+        "projectid" : client.projectID,
         "projectname" : name
     });
 
@@ -427,106 +435,140 @@ async function a_getParticipants(
 
 // Functions
 
-function updateTimeline(notes) {
+function setProject(project) {
+    
+    setTimeline(project.notes);
+    $(".project-name input").val(project.projectname);
 
-    let $old = $(".timeline .note-wrapper");
-    for(let i = 0; i < $old.length; i++) {
-        setTimeout(function() {
-            effect.fadeOut($old.eq(i), function() {
-                effect.collapseHeight($old.eq(i), function() {
-                    $old.eq(i).remove();
-                });
-            });
-        }, i*50);
-    }
+    function setTimeline(notes) {
 
-    for(let i = 0; i < notes.length; i++) {
-        let $note = $(".js-elements .note-wrapper").clone(true);
-        let note = notes[i];
-
-
-        // Set its data
-        $note.find(".top .date").text(note.creationdate);
-        $note.find(".top .time").text(note.worktime);
-        $note.find(".top .delete").attr("noteid", note.noteid);
-       
-        $note.find(".head .title").text(note.title);
-        $note.find(".creator .initials span").text(note.forename.substring(0, 1)+note.surname.substring(0, 1));
-        $note.find(".creator .name").text(note.forename+" "+note.surname);
-        
-        $note.find(".expand .text:not(.irreg)").text(note.notetext);
-        $note.find(".expand .text.irreg").text(note.irregtext.length == 0 ? "Inget att notera": note.irregtext);
-
-        // Bind action listeners
-        $note.on("mouseenter", function() {
-            effect.fadeIn($(this).find(".top"));
-        });
-        $note.on("mouseleave", function() {
-            effect.fadeOut($(this).find(".top"));
-        });
-
-        $note.find(".head .title").on("click", function() {
-            let $expand = $note.find(".expand");
-            let $title = $note.find(".title");
-            if($expand.is(":hidden")) {
-                // Stores the initial width in the element
-                $title.attr("initial-width", $title.outerWidth(true));
-                $title.animate({
-                    "width" : "42rem"
-                }, {
-                    "easing" : $.bez([0.19, 0.83, 0.32, 0.96]),
-                    "duration" : 200,
-                });
-                // Delays the slide down animation with 100ms
-                setTimeout(function() {
-                    $expand.slideDown({
-                        "easing" : $.bez([0.19, 0.83, 0.32, 0.96]),
-                        "duration" : 200
+        let $old = $(".timeline .note-wrapper");
+        for(let i = 0; i < $old.length; i++) {
+            setTimeout(function() {
+                effect.fadeOut($old.eq(i), function() {
+                    effect.collapseHeight($old.eq(i), function() {
+                        $old.eq(i).remove();
                     });
-                }, 100);
-            } else {
-                $expand.slideUp({
-                    "easing" : $.bez([0.19, 0.83, 0.32, 0.96]),
-                    "duration" : 200,
-                    "done" : function() {
-                        // When done with sliding up, restore the with of the element
-                        let width = $title.attr("initial-width");
-                        $title.animate({
-                            "width" : width+"px"
-                        }, {
-                            "easing" : $.bez([0.19, 0.83, 0.32, 0.96]),
-                            "duration" : 200
-                        });
-                    }
                 });
-                
-            }
-        });
-
-        $note.appendTo(".timeline .viewport");
-
-        setTimeout(function() {
-            effect.fadeIn($note);
-        }, i*50);
+            }, i*50);
+        }
+    
+        for(let i = 0; i < notes.length; i++) {
+            let $note = $(".js-elements .note-wrapper").clone(true);
+            let note = notes[i];
+    
+    
+            // Set its data
+            $note.find(".top .date").text(note.creationdate);
+            $note.find(".top .time").text(note.worktime);
+            
+            $note.find(".head .title").text(note.title);
+            $note.find(".head .delete").attr("noteid", note.noteid);
+            $note.find(".creator .initials span").text(note.forename.substring(0, 1)+note.surname.substring(0, 1));
+            $note.find(".creator .name").text(note.forename+" "+note.surname);
+            
+            $note.find(".expand .text:not(.irreg)").text(note.notetext);
+            $note.find(".expand .text.irreg").text(note.irregtext.length == 0 ? "Inget att notera": note.irregtext);
+    
+            // Bind action listeners
+            $note.on("mouseenter", function() {
+                effect.fadeIn($(this).find(".top"));
+            });
+            $note.on("mouseleave", function() {
+                effect.fadeOut($(this).find(".top"));
+            });
+    
+            let $delete = $note.find(".delete");
+    
+            // Delete note
+            // Passes noteID stored in attribute
+            $delete.on("click", function() {
+    
+                // Display confirmation dialogue
+                dialogue.confirm("Vill du verkligen ta bort anteckningen?", function() {
+    
+                    a_deleteNote($delete.attr("noteid"), function(response) {
+                        // On success, remove the element
+                        effect.collapseHeight($note, function() {
+                            $note.remove();
+                        });
+                    }, function(response) {
+                        notifications.display(response.message);
+                    });
+                });
+    
+            });
+    
+            $note.find(".head .title").on("click", function() {
+                let $expand = $note.find(".expand");
+                let $title = $note.find(".title");
+                if($expand.is(":hidden")) {
+                    // Stores the initial width in the element
+                    $title.attr("initial-width", $title.outerWidth(true));
+                    $title.animate({
+                        "width" : "42rem"
+                    }, {
+                        "easing" : $.bez([0.19, 0.83, 0.32, 0.96]),
+                        "duration" : 200,
+                    });
+                    // Delays the slide down animation with 100ms
+                    setTimeout(function() {
+                        $expand.slideDown({
+                            "easing" : $.bez([0.19, 0.83, 0.32, 0.96]),
+                            "duration" : 200,
+                            "done" : function() {
+                                // Display the trash can
+                                $delete.addClass("shown");
+                            }
+                        });
+                    }, 100);
+                } else {
+                    // Hide the trash can
+                    $delete.removeClass("shown");
+    
+                    $expand.slideUp({
+                        "easing" : $.bez([0.19, 0.83, 0.32, 0.96]),
+                        "duration" : 200,
+                        "done" : function() {
+                            // When done with sliding up, restore the with of the element
+                            let width = $title.attr("initial-width");
+                            $title.animate({
+                                "width" : width+"px"
+                            }, {
+                                "easing" : $.bez([0.19, 0.83, 0.32, 0.96]),
+                                "duration" : 200
+                            });
+                        }
+                    });
+                    
+                }
+            });
+    
+            $note.appendTo(".timeline .viewport");
+    
+            setTimeout(function() {
+                effect.fadeIn($note);
+            }, i*50);
+        }
     }
 }
 
-
-$(document).ready(function() {
-
-    a_getProject(4, function(response) {
-        console.log(response);
-        updateTimeline(response.project.notes);
-    } ,function(response){
-        console.log(response);
-    });
-});
 
 
 
 
 // Bind action listeners
 
+
+$(document).ready(function() {
+
+    if(client.projectID != 0) {
+        a_getProject(client.projectID, function(response) {
+            setProject(response.project);
+        });
+    }
+
+});
 
 // Push note
 $(".form.push-note button.submit").on("click", function() {
@@ -553,15 +595,7 @@ $(".add-note").on("click", function() {
 });
 
 
-// Delete note
-// Passes noteID stored in attribute
-$(".note .delete").on("click", function() {
-    a_deleteNote($(this).attr("noteid"), function(response) {
 
-    }, function(response) {
-        notifications.display(response.message);
-    });
-});
 
 // Invite account
 $(".form.invite-account button.submit").on("click", function() {
@@ -586,7 +620,7 @@ $(".remove-from-project").on("click", function() {
 // Passes projectID stored in attribute
 $(".get-project").on("click", function() {
     a_getProject($(this).attr("projectid"), function(response) {
-
+        setProject(response.project);
     }, function(response) {
         notifications.display(response.message);
     });
@@ -611,21 +645,64 @@ $(".delete-project").on("click", function() {
     });
 });
 
+
+
 // Rename project
 // Passes projectID stored in element attribute
 $(".form.rename-project button.submit").on("click", function() {
-    a_createProject($(this).attr("projectid"), function(response) {
-
+    a_renameProject(function(response) {
+        previousName = $(".form.rename-project input[name=projectname]").val();
+        $(".form.rename-project").removeClass("edit");
+        $(".form.rename-project input[name=projectname]").prop("disabled", true);
     }, function(response) {
         notifications.display(response.message);
+        $(".form.rename-project button.reject").trigger("click");
     });
 });
+let previousName = "";
+$(".form.rename-project button.edit").on("click", function() {
+    $(".form.rename-project").addClass("edit");
+    let $input = $(".form.rename-project input[name=projectname]");
+    previousName = $input.val();
+    $input.prop("disabled", false);
+    $input.textrange("set");
+});
+$(".form.rename-project button.reject").on("click", function() {
+    $(".form.rename-project").removeClass("edit");
+    let $input = $(".form.rename-project input[name=projectname]");
+    $input.val(previousName);
+    $input.prop("disabled", true);
+});
+
+
 
 // Get all projects
 // Fetch all projects
-$(".tab.show-my-projects").on("click", function() {
-    a_getAllProjects(function(response) {
+$(".dropdown.select-project .head").on("click", function() {
 
+    let $expand = $(".dropdown.select-project .expand"); 
+    if($expand.is(":hidden")) {
+        
+        $expand.slideDown({
+            "easing" : $.bez([0.19, 0.83, 0.32, 0.96]),
+            "duration" : 200,
+            "done" : function() {
+                
+            }
+        });
+    } else {
+
+        $expand.slideUp({
+            "easing" : $.bez([0.19, 0.83, 0.32, 0.96]),
+            "duration" : 200,
+            "done" : function() {
+                
+            }
+        });
+        
+    }
+    a_getAllProjects(function(response) {
+        
     }, function(response) {
         notifications.display(response.message);
     });
@@ -641,6 +718,12 @@ $textarea.on("input", function () {
     this.style.height = "auto";
     this.style.height = (this.scrollHeight+4) + "px";
 });
+
+// Setup datepicker
+$.datepicker.setDefaults($.datepicker.regional["sv"]);
+$(".form.push-note input[name=date]").datetimepicker();
+
+
 
 let participantsShown = false;
 $(".participants-icon").on("click", function(){
