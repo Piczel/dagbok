@@ -481,7 +481,7 @@ body {
 
 
     .right-panel {
-        height: 100%;
+        height: 90%;
         padding-top: 4em;
         padding-bottom:4em;
         flex-shrink: 0;
@@ -491,7 +491,7 @@ body {
             position:relative;
             height:100%;
             width:0em;
-            background-color:white;
+            background-color:$brightest;
             transition:width 500ms $bezier;
             border:1px solid $bright;
         }
@@ -529,34 +529,63 @@ body {
             }
         }
         p{
-            margin-left:0.4em;
-            margin-right:0.3em;
             white-space: nowrap;
         }
-
-        .new-member{
+        h1{
+            position:absolute;
+            width:100%;
+            bottom:1.8em;
+            color:inherit;
+            padding-left:0.2em;
+            white-space: nowrap;
+            border-top:1px solid $bright;
+            font:{
+                size:1.2rem;
+                family:inherit;
+            }
+        }
+        .form.invite-account{
             position:absolute;
             width:100%;
             bottom:0;
-            height:5.5em;
-            background-color: $bright;
-        }
-        .text{
-            position:absolute;;
-            top:0.4em;
-            left:0.2em;
-            width:7.5em;
-            font-size: 1.5em;
-            font-family: "Unlock", cursive;
-        }
-        .submit{
-            position:absolute;
-            bottom:0.4em;
-            left:0.2em;
-            width:7.5em;
-            font-size: 1.5em;
-            font-family: "Unlock", cursive;
-            color:$brightest;
+            display:flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 2;
+            .text{
+                display: block;
+                border: none;
+                border: 1px solid $brighter;
+                color: inherit;
+                width:80%;
+                margin-left:0.2em;
+                z-index: 2;
+                font: {
+                    size: 1.2rem;
+                    family: inherit; 
+                }
+                padding: 0.6rem 0.8rem;
+                background-color: $brighter;
+                margin-bottom: 0.4rem;
+                resize: none;
+                
+                height: 2em;
+            
+                &:focus {
+                    @include outline($base);
+                }
+                &:hover {
+                    border: 1px solid $bright;
+                }
+         
+            }
+            .submit{
+                z-index: 2;
+                font-size: 0.5em;
+                padding:0.6rem 0.6rem;
+                margin-right:1.5%;
+                margin-top:-1em;
+            }
         }
     }
 }
@@ -576,6 +605,6 @@ body {
     position:absolute;
     right:0.4em;
     top:0.4em;
-    z-index:10;
+    z-index:1;
 }
 
