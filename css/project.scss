@@ -188,7 +188,7 @@ body {
     position: absolute;
     left: 8rem;
     bottom: 1.6rem;
-    z-index: 5;
+    z-index: 3;
 
     .project-name {
         display: flex;
@@ -373,6 +373,7 @@ body {
                     background-color: $brightest;
                     max-width: 100%;
                     min-width: 9em;
+                    overflow: hidden;
                     margin: 0;
                     padding: 0.8rem 1.6rem;
                     white-space: nowrap;
