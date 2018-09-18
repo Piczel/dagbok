@@ -29,10 +29,18 @@ async function a_getProject(
         });
         return;
     }
+    // If a project isn't selected, return
+    if(client.projectID == 0) {
+        rejected({
+            "status" : false,
+            "message" : "Välj ett projekt, eller skapa ett nytt"
+        });
+        return;
+    }
 
     let response = await ajax("ajax/get-project.php", {
-        "accountid" : 1,
-        "projectid" : 4
+        "accountid" : client.accountID,
+        "projectid" : client.projectID
     });
 
     // Request successful?
@@ -507,7 +515,10 @@ function updateTimeline(notes) {
 $(document).ready(function() {
 
     a_getProject(4, function(response) {
+        console.log(response);
         updateTimeline(response.project.notes);
+    } ,function(response){
+        console.log(response);
     });
 });
 
@@ -631,5 +642,22 @@ $textarea.on("input", function () {
     this.style.height = (this.scrollHeight+4) + "px";
 });
 
+let participantsShown = false;
+$(".participants-icon").on("click", function(){
+    if(participantsShown){
+        $(".right-panel .participants").removeClass("shown");
+        participantsShown = false;        
+    } else {
+        updateParticipantsList();
+        $(".right-panel .participants").addClass("shown");
+        participantsShown = true;
+    }
+});
+
+
+// Get all participants and create list
+function updateParticipantsList(){
+    console.log("update");
+}
 
 
