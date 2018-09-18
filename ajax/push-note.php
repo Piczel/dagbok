@@ -26,13 +26,13 @@
     $projectid = $input["projectid"];
 
     $sql = "SELECT foraccountid FROM participation WHERE foraccountid = $accountid AND forprojectid = $projectid";
-
+    $title = (strlen($input["title"])<32)?$input["title"]:substr($input["title"], 0, 29)."...";
     $result = $connection->query($sql);
     if($result->num_rows == 1){
         $sql = "INSERT INTO note (creationdate, title, worktime, notetext, irregtext, foraccountid, forprojectid)
         VALUES (
         '".$input["creationdate"]."',
-        '".$input["title"]."',
+        '".$title."',
         ".$input["worktime"].",
         '".$input["notetext"]."',
         '".$input["irregtext"]."',
