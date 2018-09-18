@@ -509,19 +509,17 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 2em;
-  font-family: "Unlock", cursive;
-  color: #e6f1f7;
-  background-color: #7298a1;
-  border: 1px solid #4e5f63;
-  border-radius: 50%;
-  width: 1.5em;
-  height: 1.5em;
   cursor: default;
   position: absolute;
-  right: 0.4em;
+  right: 1.6em;
   top: 0.4em;
   z-index: 1;
+  cursor: pointer;
+}
+.participants-icon img {
+  width: 3em;
+  height: 3em;
+  border-radius: 50%;
 }
 
 /*# sourceMappingURL=project.css.map */

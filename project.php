@@ -239,7 +239,7 @@
     </div>
     
  
-    <div class="participants-icon"><span>M<!--Members--></span></div>
+    <div class="participants-icon"><img src="participant.png"></div>
     <div class="js-elements">
 
         <div class="project">
