@@ -183,6 +183,7 @@ body {
         position: relative;
         width: 100%;
         height: 100%;
+        display:flex;
         
         .viewport {
             padding: 50vh 0;
@@ -275,6 +276,7 @@ body {
                     border: 1px solid $bright;
                     background-color: $brightest;
                     max-width: 100%;
+                    min-width: 9em;
                     
                     margin: 0;
                     padding: 0.8rem 1.6rem;
@@ -390,17 +392,38 @@ body {
             position:relative;
             width:100%;
             height:3em;
-            border-bottom:solid;
-            border-bottom-width:1px;
-            border-color:$bright;
+            border-bottom:solid 1px $bright;
         }
         p{
             position:absolute;
             left:3.5em;
             top:0em;
-            overflow:visible;
+            white-space: nowrap;
         }
-        
+        .new-member{
+            position:absolute;
+            width:100%;
+            bottom:0;
+            height:5.5em;
+            background-color: $bright;
+        }
+        .text{
+            position:absolute;;
+            top:0.4em;
+            left:0.2em;
+            width:7.5em;
+            font-size: 1.5em;
+            font-family: "Unlock", cursive;
+        }
+        .submit{
+            position:absolute;
+            bottom:0.4em;
+            left:0.2em;
+            width:7.5em;
+            font-size: 1.5em;
+            font-family: "Unlock", cursive;
+            color:$brightest;
+        }
     }
 }
 .participants-icon {
@@ -430,8 +453,7 @@ body {
     color: $brightest;
     background-color: $base;
     border: 1px solid $dark;
-    border-radius: 50%;
-    width: 1.5em;
+    width: 3em;
     height: 1.5em;
     cursor: default;
     position:absolute;
