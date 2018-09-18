@@ -235,7 +235,7 @@ async function a_removeFromProject(
         return;
     }
 
-    let response = await ajax("ajax/remove-from-project.php", {
+    let response = await ajax("ajax/remove-account.php", {
         "accountid" : client.accountID,
         "projectid" : client.projectID,
         "removeaccountid" : accountID
@@ -606,15 +606,7 @@ $(".form.invite-account button.submit").on("click", function() {
     });
 });
 
-// Remove account from project
-// Passes accountID stored in attribute
-$(".remove-from-project").on("click", function() {
-    a_removeFromProject($(this).attr("accountid"), function(response) {
 
-    }, function(response) {
-        notifications.display(response.message);
-    });
-});
 
 // Get project
 // Passes projectID stored in attribute
@@ -740,7 +732,37 @@ $(".participants-icon").on("click", function(){
 
 // Get all participants and create list
 function updateParticipantsList(){
-    console.log("update");
+    let $participantList = $(".right-panel .participants .viewport");
+    $participantList.empty();
+
+    a_getParticipants(function(response){
+        for(let i=0; i<response.participants.length;i++){
+            let participant = response.participants[i];
+            let $member = $(".js-elements .member").clone(true);
+            $member.find(".member-icon").text(participant.forename.substring(0, 1)+participant.surname.substring(0, 1));
+            $member.find(".full-name").text(participant.forename + " " + participant.surname);
+            $member.find(".remove-from-project").on("click", function(){
+                // Trigger dialogue
+                dialogue.confirm("Vill du verkligen ta bort användaren från projektet?", function() {
+                    // Remove account from project
+                    a_removeFromProject(participant.accountid, function(response) {
+                        notifications.display(response.message);
+                        effect.collapseHeight($member, function() {
+                            $member.remove();
+                        });
+                    }, function(response) {
+                        notifications.display(response.message);
+                    });
+                });
+            });
+            $member.appendTo($participantList);
+        
+        
+        }
+
+    },function(response){
+        notifications.display(response.message);
+    });
 }
 
 

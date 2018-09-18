@@ -26,7 +26,7 @@
             throw new Exception("Inte ditt projekt");
         }
 
-        $sql = "SELECT forename, surname, email, accountid FROM account INNER JOIN participation ON forprojectid = $projectid WHERE foraccountid = $accountid";
+        $sql = "SELECT forename, surname, email, accountid FROM account INNER JOIN participation ON foraccountid = accountid WHERE forprojectid = $projectid";
         $result = $connection->query($sql);
         $participants = [];
         while($row = $result->fetch_assoc()){

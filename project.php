@@ -216,32 +216,41 @@
                     </div>
                 </div>-->
             </div>
-            
         </div>
-    </div>
-    <div class="right-panel">
-        <div class="participants" data-simplebar>
-            <div class="member">
-                <div class="member-icon">ON</div>
-                <p>HELLO WORLD</p>
-            </div>
-            <div class="member">
-                <div class="member-icon">ON</div>
-                <p>HELLO WORLD</p>
-            </div>
-            <div class="member">
-                <div class="member-icon">ON</div>
-                <p>HELLO WORLD</p>
-            </div>
-            <div class="new-member">                              
-            <input class="text" type="text" name="account" value="">
-            <input class="submit" type="submit" value="Lägg till">
+
+        <div class="right-panel">
+            <div class="participants" data-simplebar>
+                <div class="viewport">
+
+                </div>
+                
+                <div class="new-member">                              
+                <input class="text" type="text" name="account" value="">
+                <input class="submit" type="submit" value="Lägg till">
+                </div>
             </div>
         </div>
+
     </div>
+    
  
     <div class="participants-icon"><span>M<!--Members--></span></div>
     <div class="js-elements">
+
+        <div class="member">
+            <div class="member-icon"></div>
+            <p class="full-name"></p>
+            <div class="remove-from-project">
+                <svg class="icon" viewBox="0 0 100 100">
+                    <path class="line" d="M 20 100 L 10 38 L 5 38 L 5 28 L 95 28 L 95 38 L 90 38 L 80 100 Z"/>
+                    <path class="line" d="M 33 86 L 27 44"/>
+                    <path class="line" d="M 50 86 L 50 44"/>
+                    <path class="line" d="M 67 86 L 73 44"/>
+                    <path class="line lid" d="M 5 18 L 42 18 L 42 13 L 58 13 L 58 18 L 95 18"/>
+
+                </svg>
+            </div>
+        </div>
 
         <div class="note-wrapper">
             <div class="note">
@@ -273,8 +282,8 @@
                 </div>
                 <div class="expand">
                     <div class="content">
-                        <p class="text">Detta är en mycket längre förklaring av vad jag gjorde</p>
-                        <p class="text irreg">Inget särskilt att notera</p>
+                        <p class="text"></p>
+                        <p class="text irreg"></p>
                     </div>
                 </div>
             </div>
@@ -287,7 +296,7 @@
     <br>
     
 
-    <div class="invite-account">
+    <div class="form invite-account">
         <input type="text" name="email">
         <button class="submit">Bjud in</button>
     </div>
