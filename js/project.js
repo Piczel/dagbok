@@ -674,11 +674,35 @@ $(".form.rename-project button.reject").on("click", function() {
     $input.prop("disabled", true);
 });
 
+
+
 // Get all projects
 // Fetch all projects
-$(".tab.show-my-projects").on("click", function() {
-    a_getAllProjects(function(response) {
+$(".dropdown.select-project .head").on("click", function() {
 
+    let $expand = $(".dropdown.select-project .expand"); 
+    if($expand.is(":hidden")) {
+        
+        $expand.slideDown({
+            "easing" : $.bez([0.19, 0.83, 0.32, 0.96]),
+            "duration" : 200,
+            "done" : function() {
+                
+            }
+        });
+    } else {
+
+        $expand.slideUp({
+            "easing" : $.bez([0.19, 0.83, 0.32, 0.96]),
+            "duration" : 200,
+            "done" : function() {
+                
+            }
+        });
+        
+    }
+    a_getAllProjects(function(response) {
+        
     }, function(response) {
         notifications.display(response.message);
     });

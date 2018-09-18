@@ -245,6 +245,100 @@ body {
     }
 }
 
+.dropdown {
+    flex-shrink: 0;
+    position: relative;
+    .head {
+        display: flex;
+        padding: 0.8rem;
+        cursor: pointer;
+        background-color: $brightest;
+        border: 1px solid $bright;
+        align-items: center;
+        height: 3.2rem;
+
+        &:hover {
+            @include outline($base);
+        }
+        &:focus {
+            @include outline($base);
+        }
+        .icon {
+            font-size: 0.6em;
+        }
+        .title {
+            font-size: 1.17em;
+            padding: 0 0.4rem;
+            width: 14rem;
+            text-align: center;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+    }
+    .expand {
+        overflow: hidden;
+        display: none;
+        position: absolute;
+        top: 100%;
+
+        .new-project {
+            display: flex;
+            margin-top: 0.4rem;
+            
+            input {
+                display: block;
+                border: none;
+                border: 1px solid $brighter;
+                color: inherit;
+                font: {
+                    size: 1.2rem;
+                    family: inherit; 
+                }
+                padding: 0.6rem 0.8rem;
+                background-color: $brighter;
+                margin-bottom: 0.4rem;
+                width: 100%;
+                resize: none;
+                height: 2em;
+                
+                &:focus {
+                    @include outline($base);
+                }
+                &:hover {
+                    border: 1px solid $bright;
+                }
+                &::placeholder {
+                    color: $base;
+                }
+            }
+            .confirm {
+                width: 2.4rem;
+                height: 2.4rem;
+                display: flex !important;
+                align-items: center;
+                justify-content: center;
+                padding: 0;
+                margin-left: 0.4rem;
+
+                svg.icon {
+                    flex-shrink: 0;
+                    font-size: 0.4em;
+                }
+            }
+        }
+        .projects {
+            max-height: 25vh;
+            .project {
+                @include button();
+
+                &.disabled {
+                    pointer-events: none;
+                }
+            }
+        }
+    }
+}
+
 .dialogue-align {
     position: fixed;
     top: 50%;

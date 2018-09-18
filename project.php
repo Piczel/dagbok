@@ -76,6 +76,27 @@
                 </svg>
             </a>
             <div class="main">Dagboken</div>
+            <div class="select-project dropdown">
+                <div class="head">
+                    <svg class="icon" viewBox="0 0 100 100">
+                        <path d="M 0 20 L 100 20 L 50 80 Z"/>
+                    </svg>
+                    <div class="title">- Välj projekt -</div>
+                </div>
+                <div class="expand">
+                    <div class="form new-project">
+                        <input type="text" name="projectname" placeholder="Nytt projekt">
+                        <button class="submit button confirm">
+                            <svg class="icon" viewBox="0 0 100 100">
+                                <circle class="line" cx="50" cy="50" r="48" />
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="projects" data-simplebar>
+                        <div class="project disabled">Du har inga projekt än</div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="project-name form rename-project">
             <input type="text" name="projectname" placeholder="Ange projektnamn" disabled>
@@ -205,6 +226,7 @@
     </div>
 
     <div class="js-elements">
+
         <div class="note-wrapper">
             <div class="note">
                 <div class="top">

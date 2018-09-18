@@ -444,6 +444,118 @@ body {
   fill: none;
 }
 
+.dropdown {
+  flex-shrink: 0;
+  position: relative;
+}
+.dropdown .head {
+  display: flex;
+  padding: 0.8rem;
+  cursor: pointer;
+  background-color: #e6f1f7;
+  border: 1px solid #a1bec5;
+  align-items: center;
+  height: 3.2rem;
+}
+.dropdown .head:hover {
+  outline-color: #7298a1;
+  outline-offset: -2px;
+  outline-style: auto;
+  outline-width: 5px;
+}
+.dropdown .head:focus {
+  outline-color: #7298a1;
+  outline-offset: -2px;
+  outline-style: auto;
+  outline-width: 5px;
+}
+.dropdown .head .icon {
+  font-size: 0.6em;
+}
+.dropdown .head .title {
+  font-size: 1.17em;
+  padding: 0 0.4rem;
+  width: 14rem;
+  text-align: center;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.dropdown .expand {
+  overflow: hidden;
+  display: none;
+  position: absolute;
+  top: 100%;
+}
+.dropdown .expand .new-project {
+  display: flex;
+  margin-top: 0.4rem;
+}
+.dropdown .expand .new-project input {
+  display: block;
+  border: none;
+  border: 1px solid #cae0e9;
+  color: inherit;
+  font-size: 1.2rem;
+  font-family: inherit;
+  padding: 0.6rem 0.8rem;
+  background-color: #cae0e9;
+  margin-bottom: 0.4rem;
+  width: 100%;
+  resize: none;
+  height: 2em;
+}
+.dropdown .expand .new-project input:focus {
+  outline-color: #7298a1;
+  outline-offset: -2px;
+  outline-style: auto;
+  outline-width: 5px;
+}
+.dropdown .expand .new-project input:hover {
+  border: 1px solid #a1bec5;
+}
+.dropdown .expand .new-project input::placeholder {
+  color: #7298a1;
+}
+.dropdown .expand .new-project .confirm {
+  width: 2.4rem;
+  height: 2.4rem;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin-left: 0.4rem;
+}
+.dropdown .expand .new-project .confirm svg.icon {
+  flex-shrink: 0;
+  font-size: 0.4em;
+}
+.dropdown .expand .projects {
+  max-height: 25vh;
+}
+.dropdown .expand .projects .project {
+  border: 1px solid #a1bec5;
+  cursor: pointer;
+  font-size: 1.2rem;
+  padding: 0.6rem 0.8rem;
+  background-color: #cae0e9;
+  color: #4e5f63;
+}
+.dropdown .expand .projects .project:hover {
+  outline-color: #7298a1;
+  outline-offset: -2px;
+  outline-style: auto;
+  outline-width: 5px;
+}
+.dropdown .expand .projects .project:focus {
+  outline-color: #7298a1;
+  outline-offset: -2px;
+  outline-style: auto;
+  outline-width: 5px;
+}
+.dropdown .expand .projects .project.disabled {
+  pointer-events: none;
+}
+
 .dialogue-align {
   position: fixed;
   top: 50%;

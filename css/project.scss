@@ -22,6 +22,26 @@ $bezier: cubic-bezier(0.19, 0.83, 0.32, 0.96);
     }
 }
 
+@mixin trash-can() {
+    width: 2em;
+    cursor: pointer;
+    margin-right: 0.8rem;
+    
+    transition: 
+        opacity 300ms $bezier;
+    
+    .lid {
+        transition: transform 300ms $bezier;
+    }
+
+   
+    &:hover {
+        .lid {
+            transform: translateY(-0.5em);
+        }
+    }
+}
+
 body {
     height: 100vh;
 }
@@ -66,7 +86,7 @@ body {
 
         input {
             font: {
-                size: 4.8em;
+                size: 3.8em;
                 weight: 600;
                 font-family: inherit;
             };
@@ -78,6 +98,7 @@ body {
             width: 44rem;
             padding-right: 0.8rem;
             margin-right: -0.8rem;
+            transition: all 300ms $bezier;
             
             &:focus {
                 outline: none;
@@ -254,6 +275,7 @@ body {
         
         .viewport {
             padding: 50vh 0;
+            position: relative;
         }
 
         .axis-wrapper {
@@ -300,7 +322,9 @@ body {
             justify-content: flex-end;
             width: 60vw;
             opacity: 0;
+            position: relative;
             
+            z-index: 20;
         }
         .note {
             position: relative;
@@ -341,6 +365,8 @@ body {
                     min-width: 9em;
                     margin: 0;
                     padding: 0.8rem 1.6rem;
+                    white-space: nowrap;
+                    flex-shrink: 0;
                     font: {
                         weight: 400;
                         size: 1.6em;
@@ -354,7 +380,6 @@ body {
                 }
 
                 .delete-align {
-                    position: relative;
                     display: flex;
                     justify-content: flex-end;
                     align-items: center;
@@ -364,26 +389,13 @@ body {
 
                 }
                 .delete {
-                    width: 2em;
-                    opacity: 0;
-                    cursor: pointer;
-                    margin-right: 0.8rem;
+                    @include trash-can();
                     pointer-events: none;
-                    transition: 
-                        opacity 300ms $bezier;
-                    
-                    .lid {
-                        transition: transform 300ms $bezier;
-                    }
+                    opacity: 0;
 
                     &.shown {
                         opacity: 1;
                         pointer-events: all;
-                    }
-                    &:hover {
-                        .lid {
-                            transform: translateY(-0.5em);
-                        }
                     }
                 }
 
