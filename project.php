@@ -222,16 +222,16 @@
         <div class="right-panel">
             <div class="participants" data-simplebar>
                 <div class="viewport">
-                    </div>                     
+                </div>                     
             
-            <div class="form invite-account">
-                <h1>Bjud in konto...</h1>
-                <input class="text" type="text" name="email" placeholder="Ange epost">
-                <button class="submit button confirm">
-                    <svg class="icon" viewBox="0 0 100 100">
-                        <circle class="line" cx="50" cy="50" r="48" />
-                    </svg>
-                </button>
+                <div class="form invite-account">
+                    <h1>Bjud in konto...</h1>
+                    <input class="text" type="text" name="email" placeholder="Ange epost">
+                    <button class="submit button confirm">
+                        <svg class="icon" viewBox="0 0 100 100">
+                            <circle class="line" cx="50" cy="50" r="48" />
+                        </svg>
+                    </button>
                 </div>
             </div>
         </div>
