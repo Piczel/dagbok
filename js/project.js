@@ -451,7 +451,7 @@ function setProject(project) {
                         $old.eq(i).remove();
                     });
                 });
-            }, i*50);
+            }, Math.min(i*50, 800));
         }
     
         for(let i = 0; i < notes.length; i++) {
