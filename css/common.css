@@ -493,6 +493,7 @@ body {
   position: absolute;
   top: 100%;
   max-height: 16em;
+  width: 100%;
 }
 .dropdown .expand .simplebar-track {
   z-index: 5;
